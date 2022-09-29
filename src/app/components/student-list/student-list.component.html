@@ -1,0 +1,40 @@
+<mat-grid-list cols="3" rowHeight="300px">
+    <div *ngFor="let card of cards$ | async">
+        <mat-grid-tile>
+            <img src="{{card.image}}" style="height:75%">
+            <ul>
+                <li><b>Name:</b> {{card.name}}</li>
+                <li><b>Class:</b> {{card.cardClass}}</li>
+                <li><b>Manacost:</b> {{card.cost}}</li>
+                <li><b>Rarity:</b> {{card.rarity}}</li>
+                <li><b>Set:</b> {{card.set}}</li>
+                <li><b>Effect:</b> {{card.effect}}</li>
+                <li *ngIf="card.attack != null"><b>Attack:</b> {{card.attack}}</li>
+                <li *ngIf="card.health != null"><b>Health:</b> {{card.health}}</li>
+                <li *ngIf="card.tribe != null"><b>Tribe:</b> {{card.tribe}}</li>
+                <li *ngIf="card.spellType!= null"><b>Spelltype:</b> {{card.spellType}}</li>
+                <li *ngIf="card.durability != null"><b>Durability:</b> {{card.durability}}</li>
+                <li *ngIf="card.heroPower!= null"><b>Heropower:</b> {{card.heroPower}}</li>
+                <li *ngIf="card.heroPowerEffect!= null"><b>Heropower Effect:</b> {{card.heroPowerEffect}}</li>
+                <li *ngIf="card.heroPowerCost!= null"><b>Heropower Cost:</b> {{card.heroPowerCost}}</li>
+            </ul>
+        </mat-grid-tile>
+    </div>
+</mat-grid-list>
+
+<!-- id?: number;
+    name: string | undefined;
+    cardClass: string | undefined;
+    image: string | undefined;
+    cost: number | undefined;
+    rarity: string | undefined;
+    set: string | undefined;
+    effect: string | undefined;
+    attack?: number;
+    health?: number;
+    tribe?: string;
+    spellType?: string;
+    durability?: number;
+    heroPower?: string;
+    heroPowerEffect?: string;
+    heroPowerCost?: number; -->
