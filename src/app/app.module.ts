@@ -8,12 +8,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { DecksComponent } from './components/decks/decks.component';
 import { CardsComponent } from './components/cards/cards.component';
+import { HomeComponent } from './components/home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DecksComponent,
-    CardsComponent
+    CardsComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
