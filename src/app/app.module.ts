@@ -5,13 +5,15 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { StudentListComponent } from './components/student-list/student-list.component';
-import {MatGridListModule} from '@angular/material/grid-list';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { DecksComponent } from './components/decks/decks.component';
+import { CardsComponent } from './components/cards/cards.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    StudentListComponent
+    DecksComponent,
+    CardsComponent
   ],
   imports: [
     BrowserModule,

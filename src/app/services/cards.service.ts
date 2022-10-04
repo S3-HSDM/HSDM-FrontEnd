@@ -7,16 +7,17 @@ import { Card } from '../models/Card';
 @Injectable({
   providedIn: 'root'
 })
-export class StudentsService {
+
+export class CardsService {
 
   uri: string = environment.API_URL + 'cards';
   private cards: Card[] = [];
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient) { 
 
-  }
+   }
 
-  public getCards(): Observable<Card[]> {
+   public getCards(): Observable<Card[]> {
     return this.http.get<Card[]>(this.uri);
   }
 }
