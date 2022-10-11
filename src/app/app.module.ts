@@ -9,6 +9,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { DecksComponent } from './components/decks/decks.component';
 import { CardsComponent } from './components/cards/cards.component';
 import { HomeComponent } from './components/home/home.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { HomeComponent } from './components/home/home.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    MatGridListModule
+    MatGridListModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]
