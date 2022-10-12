@@ -1,4 +1,4 @@
-import { HttpParams, HttpClient } from '@angular/common/http';
+import {HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -16,12 +16,7 @@ export class CardsService {
    }
 
   public getCards(): Observable<Card[]> {
-    let params = new HttpParams();
-    let param1 = "";
-    let param2 = "";
-    params = params.append('class', param1);
-    params = params.append('type', param2);
-    return this.http.get<Card[]>(this.uri, {params: params});
+    return this.http.get<Card[]>(this.uri);
   }
 }
 

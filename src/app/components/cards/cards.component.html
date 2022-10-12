@@ -1,39 +1,93 @@
 <br />
 <div class="container">
-    <a class="icon-button" href="cards"> <img class="icon" src="assets/images/all.png" /> </a>
-    <a class="icon-button" href="cards?class=DemonHunter"> <img class="icon" src="assets/images/dh.png" /> </a>
-    <a class="icon-button" href="cards?class=Druid"> <img class="icon" src="assets/images/druid.png" /> </a>
-    <a class="icon-button" href="cards?class=Hunter"> <img class="icon" src="assets/images/hunter.png" /> </a>
-    <a class="icon-button" href="cards?class=Mage"> <img class="icon" src="assets/images/mage.png" /> </a>
-    <a class="icon-button" href="cards?class=Paladin"> <img class="icon" src="assets/images/paladin.png" /> </a>
-    <a class="icon-button" href="cards?class=Priest"> <img class="icon" src="assets/images/priest.png" /> </a>
-    <a class="icon-button" href="cards?class=Rogue"> <img class="icon" src="assets/images/rogue.png" /> </a>
-    <a class="icon-button" href="cards?class=Shaman"> <img class="icon" src="assets/images/shaman.png" /> </a>
+    <h2>Class:
+        <mat-button-toggle-group #class="matButtonToggleGroup" name="class" aria-label="Class">
+            <mat-button-toggle value="" aria-label="All Classes" checked="true">
+                <button class="icon-button"> <img class="icon" src="assets/images/all.png" /> </button>
+            </mat-button-toggle>
+            <mat-button-toggle value="Demon Hunter" aria-label="Demon Hunter Class">
+                <button class="icon-button"> <img class="icon" src="assets/images/dh.png" /> </button>
+            </mat-button-toggle>
+            <mat-button-toggle value="Druid" aria-label="Druid Class">
+                <button class="icon-button"> <img class="icon" src="assets/images/druid.png" /> </button>
+            </mat-button-toggle>
+            <mat-button-toggle value="Hunter" aria-label="Hunter Class">
+                <button class="icon-button"> <img class="icon" src="assets/images/hunter.png" /> </button>
+            </mat-button-toggle>
+            <mat-button-toggle value="Mage" aria-label="Mage Class">
+                <button class="icon-button"> <img class="icon" src="assets/images/mage.png" /> </button>
+            </mat-button-toggle>
+            <mat-button-toggle value="Paladin" aria-label="Paladin Class">
+                <button class="icon-button"> <img class="icon" src="assets/images/paladin.png" /> </button>
+            </mat-button-toggle>
+            <mat-button-toggle value="Priest" aria-label="Priest Class">
+                <button class="icon-button"> <img class="icon" src="assets/images/priest.png" /> </button>
+            </mat-button-toggle>
+            <mat-button-toggle value="Rogue" aria-label="Rogue Class">
+                <button class="icon-button"> <img class="icon" src="assets/images/rogue.png" /> </button>
+            </mat-button-toggle>
+            <mat-button-toggle value="Shaman" aria-label="Shaman Class">
+                <button class="icon-button"> <img class="icon" src="assets/images/shaman.png" /> </button>
+            </mat-button-toggle>
+            <mat-button-toggle value="Warlock" aria-label="Warlock Class">
+                <button class="icon-button"> <img class="icon" src="assets/images/warlock.png" /> </button>
+            </mat-button-toggle>
+            <mat-button-toggle value="Warrior" aria-label="Warrior Class">
+                <button class="icon-button"> <img class="icon" src="assets/images/warrior.png" /> </button>
+            </mat-button-toggle>
+            <mat-button-toggle value="Neutral" aria-label="Neutral Class">
+                <button class="icon-button"> <img class="icon" src="assets/images/neutral.png" /> </button>
+            </mat-button-toggle>
+        </mat-button-toggle-group>
+    </h2>
+</div>
+<hr />
+<div class="container">
+    <h2> <img src="assets/images/manacost.png"> :
+        <mat-button-toggle-group #manacost="matButtonToggleGroup" name="class" aria-label="Class">
+            <mat-button-toggle value="" aria-label="All Manacost" checked="true"> All </mat-button-toggle>
+            <mat-button-toggle value="0" aria-label="Manacost 0"> 0 </mat-button-toggle>
+            <mat-button-toggle value="1" aria-label="Manacost 1"> 1 </mat-button-toggle>
+            <mat-button-toggle value="2" aria-label="Manacost 2"> 2 </mat-button-toggle>
+            <mat-button-toggle value="3" aria-label="Manacost 3"> 3 </mat-button-toggle>
+            <mat-button-toggle value="4" aria-label="Manacost 4"> 4 </mat-button-toggle>
+            <mat-button-toggle value="5" aria-label="Manacost 5"> 5 </mat-button-toggle>
+            <mat-button-toggle value="6" aria-label="Manacost 6"> 6 </mat-button-toggle>
+            <mat-button-toggle value="7" aria-label="Manacost 7"> 7 </mat-button-toggle>
+            <mat-button-toggle value="8" aria-label="Manacost 8"> 8 </mat-button-toggle>
+            <mat-button-toggle value="9" aria-label="Manacost 9"> 9 </mat-button-toggle>
+            <mat-button-toggle value="10" aria-label="Manacost 10+"> 10+ </mat-button-toggle>
+        </mat-button-toggle-group>
+    </h2>
 </div>
 <hr />
 <div class="container-fluid" style="width:95%">
     <mat-grid-list cols="3" rowHeight="300px">
         <div *ngFor="let card of cards$ | async">
-            <mat-grid-tile>
-                <img src="{{card.image}}" style="height:75%">
-                <ul>
-                    <li><b>Name:</b> {{card.name}}</li>
-                    <li><b>Class:</b> {{card.cardClass}}</li>
-                    <li><b>Manacost:</b> {{card.cost}}</li>
-                    <li><b>Rarity:</b> {{card.rarity}}</li>
-                    <li><b>Set:</b> {{card.set}}</li>
-                    <li><b>Effect:</b> {{card.effect}}</li>
-                    <li *ngIf="card.attack != null"><b>Attack:</b> {{card.attack}}</li>
-                    <li *ngIf="card.health != null"><b>Health:</b> {{card.health}}</li>
-                    <li *ngIf="card.tribe != null"><b>Tribe:</b> {{card.tribe}}</li>
-                    <li *ngIf="card.spellType!= null"><b>Spelltype:</b> {{card.spellType}}</li>
-                    <li *ngIf="card.durability != null"><b>Durability:</b> {{card.durability}}</li>
-                    <li *ngIf="card.heroPower!= null"><b>Heropower:</b> {{card.heroPower}}</li>
-                    <li *ngIf="card.heroPowerEffect!= null"><b>Heropower Effect:</b> {{card.heroPowerEffect}}</li>
-                    <li *ngIf="card.heroPowerCost!= null"><b>Heropower Cost:</b> {{card.heroPowerCost}}</li>
-                </ul>
-            </mat-grid-tile>
+            <div *ngIf="card.cardClass == class.value || class.value == ''">
+                <div *ngIf="card.cost == manacost.value || manacost.value == ''">
+                <mat-grid-tile>
+                    <img src="{{card.image}}" style="height:75%">
+                    <ul>
+                        <li><b>Name:</b> {{card.name}}</li>
+                        <li><b>Class:</b> {{card.cardClass}}</li>
+                        <li><b>Manacost:</b> {{card.cost}}</li>
+                        <li><b>Rarity:</b> {{card.rarity}}</li>
+                        <li><b>Set:</b> {{card.set}}</li>
+                        <li><b>Effect:</b> {{card.effect}}</li>
+                        <li *ngIf="card.attack != null"><b>Attack:</b> {{card.attack}}</li>
+                        <li *ngIf="card.health != null"><b>Health:</b> {{card.health}}</li>
+                        <li *ngIf="card.tribe != null"><b>Tribe:</b> {{card.tribe}}</li>
+                        <li *ngIf="card.spellType!= null"><b>Spelltype:</b> {{card.spellType}}</li>
+                        <li *ngIf="card.durability != null"><b>Durability:</b> {{card.durability}}</li>
+                        <li *ngIf="card.heroPower!= null"><b>Heropower:</b> {{card.heroPower}}</li>
+                        <li *ngIf="card.heroPowerEffect!= null"><b>Heropower Effect:</b> {{card.heroPowerEffect}}</li>
+                        <li *ngIf="card.heroPowerCost!= null"><b>Heropower Cost:</b> {{card.heroPowerCost}}</li>
+                    </ul>
+                </mat-grid-tile>
+            </div>
         </div>
+    </div>
     </mat-grid-list>
 </div>
 
