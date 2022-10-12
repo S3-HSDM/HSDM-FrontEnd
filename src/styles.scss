@@ -10,7 +10,9 @@ body {
     color: black;
 }
 
-
-
+.button-row{
+    margin-right: 8px;
+  }
+  
 /* Importing Bootstrap SCSS file. */
 @import '~bootstrap/scss/bootstrap';

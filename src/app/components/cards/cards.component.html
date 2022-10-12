@@ -1,28 +1,41 @@
-<mat-grid-list cols="4" rowHeight="300px">
-    <div *ngFor="let card of cards$ | async">
-        <mat-grid-tile>
-            <img src="{{card.image}}" style="height:75%">
-            <ul>
-                <li><b>Name:</b> {{card.name}}</li>
-                <li><b>Class:</b> {{card.cardClass}}</li>
-                <li><b>Manacost:</b> {{card.cost}}</li>
-                <li><b>Rarity:</b> {{card.rarity}}</li>
-                <li><b>Set:</b> {{card.set}}</li>
-                <li><b>Effect:</b> {{card.effect}}</li>
-                <li *ngIf="card.attack != null"><b>Attack:</b> {{card.attack}}</li>
-                <li *ngIf="card.health != null"><b>Health:</b> {{card.health}}</li>
-                <li *ngIf="card.tribe != null"><b>Tribe:</b> {{card.tribe}}</li>
-                <li *ngIf="card.spellType!= null"><b>Spelltype:</b> {{card.spellType}}</li>
-                <li *ngIf="card.durability != null"><b>Durability:</b> {{card.durability}}</li>
-                <li *ngIf="card.heroPower!= null"><b>Heropower:</b> {{card.heroPower}}</li>
-                <li *ngIf="card.heroPowerEffect!= null"><b>Heropower Effect:</b> {{card.heroPowerEffect}}</li>
-                <li *ngIf="card.heroPowerCost!= null"><b>Heropower Cost:</b> {{card.heroPowerCost}}</li>
-            </ul>
-        </mat-grid-tile>
-    </div>
-</mat-grid-list>
-
-
+<br />
+<div class="container">
+    <a class="icon-button" href="cards"> <img class="icon" src="assets/images/all.png" /> </a>
+    <a class="icon-button" href="cards?class=DemonHunter"> <img class="icon" src="assets/images/dh.png" /> </a>
+    <a class="icon-button" href="cards?class=Druid"> <img class="icon" src="assets/images/druid.png" /> </a>
+    <a class="icon-button" href="cards?class=Hunter"> <img class="icon" src="assets/images/hunter.png" /> </a>
+    <a class="icon-button" href="cards?class=Mage"> <img class="icon" src="assets/images/mage.png" /> </a>
+    <a class="icon-button" href="cards?class=Paladin"> <img class="icon" src="assets/images/paladin.png" /> </a>
+    <a class="icon-button" href="cards?class=Priest"> <img class="icon" src="assets/images/priest.png" /> </a>
+    <a class="icon-button" href="cards?class=Rogue"> <img class="icon" src="assets/images/rogue.png" /> </a>
+    <a class="icon-button" href="cards?class=Shaman"> <img class="icon" src="assets/images/shaman.png" /> </a>
+</div>
+<hr />
+<div class="container-fluid" style="width:95%">
+    <mat-grid-list cols="3" rowHeight="300px">
+        <div *ngFor="let card of cards$ | async">
+            <mat-grid-tile>
+                <img src="{{card.image}}" style="height:75%">
+                <ul>
+                    <li><b>Name:</b> {{card.name}}</li>
+                    <li><b>Class:</b> {{card.cardClass}}</li>
+                    <li><b>Manacost:</b> {{card.cost}}</li>
+                    <li><b>Rarity:</b> {{card.rarity}}</li>
+                    <li><b>Set:</b> {{card.set}}</li>
+                    <li><b>Effect:</b> {{card.effect}}</li>
+                    <li *ngIf="card.attack != null"><b>Attack:</b> {{card.attack}}</li>
+                    <li *ngIf="card.health != null"><b>Health:</b> {{card.health}}</li>
+                    <li *ngIf="card.tribe != null"><b>Tribe:</b> {{card.tribe}}</li>
+                    <li *ngIf="card.spellType!= null"><b>Spelltype:</b> {{card.spellType}}</li>
+                    <li *ngIf="card.durability != null"><b>Durability:</b> {{card.durability}}</li>
+                    <li *ngIf="card.heroPower!= null"><b>Heropower:</b> {{card.heroPower}}</li>
+                    <li *ngIf="card.heroPowerEffect!= null"><b>Heropower Effect:</b> {{card.heroPowerEffect}}</li>
+                    <li *ngIf="card.heroPowerCost!= null"><b>Heropower Cost:</b> {{card.heroPowerCost}}</li>
+                </ul>
+            </mat-grid-tile>
+        </div>
+    </mat-grid-list>
+</div>
 
 <!-- id?: number;
     name: string | undefined;
