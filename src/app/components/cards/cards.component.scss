@@ -8,6 +8,10 @@
   .icon-button .icon {
     width: 50px;
   }
+
+  .icon-button .iconMode {
+    height: 50px;
+  }
   
   .container-fluid mat-button-toggle-group {
     margin-right: 10px;
@@ -16,6 +20,7 @@
 
   .container-fluid mat-form-field {
     margin-right: 10px;
+    width: 300px;
   }
   
   .container-fluid mat-grid-tile {
@@ -28,6 +33,10 @@
 
   .search-field {
     width: 300px;
+  }
+
+  .search-field-extra-filters {
+    width: 200px;
   }
 
   ::ng-deep .mat-select-panel {

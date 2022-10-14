@@ -4,27 +4,25 @@
             <mat-expansion-panel-header>
                 <mat-panel-title> More filters </mat-panel-title>
             </mat-expansion-panel-header>
-            <h2>
-                <mat-form-field appearance="fill">
-                    <mat-label>Attack</mat-label>
-                    <mat-select [(value)]="attackValue" disableOptionCentering="true">
-                        <mat-option></mat-option>
-                        <mat-option [value]="option.value" *ngFor="let option of attack">{{ option.viewValue }}
-                        </mat-option>
-                    </mat-select>
+            <h3>
+                <mat-form-field appearance="fill" class="search-field-extra-filter">
+                    <mat-label> <img src="assets/images/attack.png" style="height:25px"> Attack </mat-label>
+                    <input matInput type="text" #attack="">
+                    <button *ngIf="attack.value" matSuffix mat-icon-button aria-label="Clear" (click)="attack.value=''">
+                        <mat-icon>close</mat-icon>
+                    </button>
                 </mat-form-field>
-                <mat-form-field appearance="fill">
-                    <mat-label>Health</mat-label>
-                    <mat-select [(value)]="healthValue" disableOptionCentering="true">
-                        <mat-option></mat-option>
-                        <mat-option [value]="option.value" *ngFor="let option of health">{{ option.viewValue }}
-                        </mat-option>
-                    </mat-select>
+                <mat-form-field appearance="fill" class="search-field-extra-filter">
+                    <mat-label> <img src="assets/images/health.png" style="height:25px"> Health </mat-label>
+                    <input matInput type="text" #health="">
+                    <button *ngIf="health.value" matSuffix mat-icon-button aria-label="Clear" (click)="health.value=''">
+                        <mat-icon>close</mat-icon>
+                    </button>
                 </mat-form-field>
                 <mat-form-field appearance="fill">
                     <mat-label>Rarity</mat-label>
                     <mat-select [(value)]="rarityValue" disableOptionCentering="true">
-                        <mat-option></mat-option>
+                        <mat-option>-- All --</mat-option>
                         <mat-option [value]="option.value" *ngFor="let option of rarity">{{ option.viewValue }}
                         </mat-option>
                     </mat-select>
@@ -32,15 +30,17 @@
                 <mat-form-field appearance="fill">
                     <mat-label>Card Type</mat-label>
                     <mat-select [(value)]="cardTypeValue" disableOptionCentering="true">
-                        <mat-option></mat-option>
+                        <mat-option>-- All --</mat-option>
                         <mat-option [value]="option.value" *ngFor="let option of cardType">{{ option.viewValue }}
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
+            </h3>
+            <h3>
                 <mat-form-field appearance="fill">
                     <mat-label>Tribe</mat-label>
                     <mat-select [(value)]="tribeValue" disableOptionCentering="true">
-                        <mat-option></mat-option>
+                        <mat-option>-- All --</mat-option>
                         <mat-option [value]="option.value" *ngFor="let option of tribe">{{ option.viewValue }}
                         </mat-option>
                     </mat-select>
@@ -48,12 +48,36 @@
                 <mat-form-field appearance="fill">
                     <mat-label>Spell School</mat-label>
                     <mat-select [(value)]="spellSchoolValue" disableOptionCentering="true">
-                        <mat-option></mat-option>
+                        <mat-option>-- All --</mat-option>
                         <mat-option [value]="option.value" *ngFor="let option of spellSchool">{{ option.viewValue }}
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
-            </h2>
+                <mat-form-field appearance="fill">
+                    <mat-label>Set</mat-label>
+                    <mat-select [(value)]="setValue">
+                        <mat-option>-- All --</mat-option>
+                        <mat-optgroup *ngFor="let group of setGroups" [label]="group.name">
+                            <mat-option [value]="set.value" *ngFor="let set of group.set">{{set.viewValue}}
+                            </mat-option>
+                        </mat-optgroup>
+                    </mat-select>
+                </mat-form-field>
+                <mat-button-toggle-group #mode="matButtonToggleGroup" name="mode" aria-label="Class">
+                    <mat-button-toggle value="" aria-label="All Classes" checked="true">
+                        <button class="icon-button"> <img class="iconMode" src="assets/images/all.png" /> </button>
+                    </mat-button-toggle>
+                    <mat-button-toggle value="standard" aria-label="All Classes">
+                        <button class="icon-button"> <img class="iconMode" src="assets/images/standard.png" /> </button>
+                    </mat-button-toggle>
+                    <mat-button-toggle value="wild" aria-label="All Classes">
+                        <button class="icon-button"> <img class="iconMode" src="assets/images/wild.png" /> </button>
+                    </mat-button-toggle>
+                    <mat-button-toggle value="classic" aria-label="All Classes">
+                        <button class="icon-button"> <img class="iconMode" src="assets/images/classic.png" /> </button>
+                    </mat-button-toggle>
+                </mat-button-toggle-group>
+            </h3>
         </mat-expansion-panel>
     </mat-accordion>
 </div>
@@ -135,9 +159,9 @@
                     <!-- Select cards with the chosen manacost -->
                     <div *ngIf="card.cost == manacost.value || manacost.value == ''">
                         <!-- Select cards with the chosen attack -->
-                        <div *ngIf="card.attack?.toString() == attackValue || attackValue == null">
+                        <div *ngIf="card.attack?.toString() == attack.value || attack.value == ''">
                             <!-- Select cards with the chosen health -->
-                            <div *ngIf="card.health?.toString() == healthValue || healthValue == null">
+                            <div *ngIf="card.health?.toString() == health.value || health.value == ''">
                                 <!-- Select cards with the chosen rarity -->
                                 <div *ngIf="card.rarity == rarityValue || rarityValue == null">
                                     <!-- Select cards with the chosen card type -->
@@ -148,32 +172,49 @@
                                         <div *ngIf="card.tribe == tribeValue || tribeValue == null">
                                             <!-- Select cards with the chosen spell school -->
                                             <div *ngIf="card.spellType == spellSchoolValue || spellSchoolValue == null">
-                                                <mat-grid-tile>
-                                                    <img src="{{card.image}}">
-                                                    <ul>
-                                                        <li><b>Name:</b> {{card.name}}</li>
-                                                        <li><b>Class:</b> {{card.cardClass}}</li>
-                                                        <li><b>Manacost:</b> {{card.cost}}</li>
-                                                        <li><b>Rarity:</b> {{card.rarity}}</li>
-                                                        <li><b>Set:</b> {{card.set}}</li>
-                                                        <li><b>Effect:</b> {{card.effect}}</li>
-                                                        <li *ngIf="card.attack != null"><b>Attack:</b> {{card.attack}}
-                                                        </li>
-                                                        <li *ngIf="card.health != null"><b>Health:</b> {{card.health}}
-                                                        </li>
-                                                        <li *ngIf="card.tribe != null"><b>Tribe:</b> {{card.tribe}}</li>
-                                                        <li *ngIf="card.spellType!= null"><b>Spell School:</b>
-                                                            {{card.spellType}}</li>
-                                                        <li *ngIf="card.durability != null"><b>Durability:</b>
-                                                            {{card.durability}}</li>
-                                                        <li *ngIf="card.heroPower!= null"><b>Heropower:</b>
-                                                            {{card.heroPower}}</li>
-                                                        <li *ngIf="card.heroPowerEffect!= null"><b>Heropower Effect:</b>
-                                                            {{card.heroPowerEffect}}</li>
-                                                        <li *ngIf="card.heroPowerCost!= null"><b>Heropower Cost:</b>
-                                                            {{card.heroPowerCost}}</li>
-                                                    </ul>
-                                                </mat-grid-tile>
+                                                <!-- Select cards with the chosen set -->
+                                                <div
+                                                    *ngIf="card.set == setValue || setValue == null || ((setValue == 'Legacy' || setValue == 'Core') && (card.set == 'Core & Legacy'))">
+                                                    <!-- Select cards with the chosen game mode -->
+                                                    <div
+                                                        *ngIf="(mode.value == 'classic' && (card.set == 'Legacy' || card.set == 'Core & Legacy') && card.cardClass != 'Demon Hunter') 
+                                                        || (mode.value == 'standard' && (card.set == 'Murder at Castle Nathria' || card.set == 'Voyage to the Sunken City' || card.set == 'Fractured in Alterac Valley' || card.set == 'United in Stormwind' || card.set == 'Forged in the Barrens' || card.set == 'Core' || card.set == 'Core & Legacy')) 
+                                                        || (mode.value == 'wild' && (card.set != 'Murder at Castle Nathria' && card.set != 'Voyage to the Sunken City' && card.set != 'Fractured in Alterac Valley' && card.set != 'United in Stormwind' && card.set != 'Forged in the Barrens' && card.set != 'Core')) 
+                                                        || mode.value == ''">
+                                                        <mat-grid-tile>
+                                                            <img src="{{card.image}}">
+                                                            <ul>
+                                                                <li><b>Name:</b> {{card.name}}</li>
+                                                                <li><b>Class:</b> {{card.cardClass}}</li>
+                                                                <li><b>Manacost:</b> {{card.cost}}</li>
+                                                                <li><b>Rarity:</b> {{card.rarity}}</li>
+                                                                <li><b>Set:</b> {{card.set}}</li>
+                                                                <li><b>Effect:</b> {{card.effect}}</li>
+                                                                <li *ngIf="card.attack != null"><b>Attack:</b>
+                                                                    {{card.attack}}
+                                                                </li>
+                                                                <li *ngIf="card.health != null"><b>Health:</b>
+                                                                    {{card.health}}
+                                                                </li>
+                                                                <li *ngIf="card.tribe != null"><b>Tribe:</b>
+                                                                    {{card.tribe}}
+                                                                </li>
+                                                                <li *ngIf="card.spellType!= null"><b>Spell School:</b>
+                                                                    {{card.spellType}}</li>
+                                                                <li *ngIf="card.durability != null"><b>Durability:</b>
+                                                                    {{card.durability}}</li>
+                                                                <li *ngIf="card.heroPower!= null"><b>Heropower:</b>
+                                                                    {{card.heroPower}}</li>
+                                                                <li *ngIf="card.heroPowerEffect!= null"><b>Heropower
+                                                                        Effect:</b>
+                                                                    {{card.heroPowerEffect}}</li>
+                                                                <li *ngIf="card.heroPowerCost!= null"><b>Heropower
+                                                                        Cost:</b>
+                                                                    {{card.heroPowerCost}}</li>
+                                                            </ul>
+                                                        </mat-grid-tile>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

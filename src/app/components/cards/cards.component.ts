@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Card } from 'src/app/models/Card';
 import { CardsService } from 'src/app/services/cards.service';
+import { FormControl } from '@angular/forms';
 
 interface Attack {
   value: string;
@@ -28,6 +29,16 @@ interface SpellSchool {
   viewValue: string;
 }
 
+interface Set {
+  value: string;
+  viewValue: string;
+}
+
+interface SetGroup {
+  name: string;
+  set: Set[];
+}
+
 @Component({
   selector: 'app-cards',
   templateUrl: './cards.component.html',
@@ -38,39 +49,11 @@ interface SpellSchool {
 export class CardsComponent implements OnInit {
 
   cards$: Observable<Card[]> = new Observable;
-  attackValue = null;
-  healthValue = null;
   rarityValue = null;
   cardTypeValue = null;
   tribeValue = null;
   spellSchoolValue = null;
-
-  attack: Attack[] = [
-    {value: '0', viewValue: '0'},
-    {value: '1', viewValue: '1'},
-    {value: '2', viewValue: '2'},
-    {value: '3', viewValue: '3'},
-    {value: '4', viewValue: '4'},
-    {value: '5', viewValue: '5'},
-    {value: '6', viewValue: '6'},
-    {value: '7', viewValue: '7'},
-    {value: '8', viewValue: '8'},
-    {value: '9', viewValue: '9'},
-    {value: '10', viewValue: '10+'},
-  ];
-
-  health: Health[] = [
-    {value: '1', viewValue: '1'},
-    {value: '2', viewValue: '2'},
-    {value: '3', viewValue: '3'},
-    {value: '4', viewValue: '4'},
-    {value: '5', viewValue: '5'},
-    {value: '6', viewValue: '6'},
-    {value: '7', viewValue: '7'},
-    {value: '8', viewValue: '8'},
-    {value: '9', viewValue: '9'},
-    {value: '10', viewValue: '10+'},
-  ];
+  setValue = null;
 
   rarity: Rarity[] = [
     {value: 'Free', viewValue: 'Free'},
@@ -110,6 +93,49 @@ export class CardsComponent implements OnInit {
     {value: 'Nature', viewValue: 'Nature'},
     {value: 'Shadow', viewValue: 'Shadow'}
   ];
+
+  setControl = new FormControl('');
+  setGroups: SetGroup[] = [
+    {
+      name: 'Standard sets',
+      set: [
+        {value: 'Murder at Castle Nathria', viewValue: 'Murder at Castle Nathria'},
+        {value: 'Voyage to the Sunken City', viewValue: 'Voyage to the Sunken City'},
+        {value: 'Fractured in Alterac Valley', viewValue: 'Fractured in Alterac Valley'},
+        {value: 'United in Stormwind', viewValue: 'United in Stormwind'},
+        {value: 'Forged in the Barrens', viewValue: 'Forged in the Barrens'},
+        {value: 'Core', viewValue: 'Core'}
+      ]
+    },
+    {
+      name: 'Wild sets',
+      set: [
+        {value: 'Madness at the Darkmoon Faire', viewValue: 'Madness at the Darkmoon Faire'},
+        {value: 'Scholomance Academy', viewValue: 'Scholomance Academy'},
+        {value: 'Demon Hunter Initiate', viewValue: 'Demon Hunter Initiate'},
+        {value: 'Ashes of Outland', viewValue: 'Ashes of Outland'},
+        {value: "Galakrond's Awakening", viewValue: "Galakrond's Awakening"},
+        {value: 'Descent of Dragons', viewValue: 'Descent of Dragons'},
+        {value: 'Saviors of Uldum', viewValue: 'Saviors of Uldum'},
+        {value: 'Rise of Shadows', viewValue: 'Rise of Shadows'},
+        {value: "Rastakhan's Rumble", viewValue: "Rastakhan's Rumble"},
+        {value: 'The Boomsday Project', viewValue: 'The Boomsday Project'},
+        {value: 'The Witchwood', viewValue: 'The Witchwood'},
+        {value: 'Kobolds and Catacombs', viewValue: 'Kobolds and Catacombs'},
+        {value: 'Knights of the Frozen Throne', viewValue: 'Knights of the Frozen Throne'},
+        {value: "Journey to Un'Goro", viewValue: "Journey to Un'Goro"},
+        {value: 'Mean Streets of Gadgetzan', viewValue: 'Mean Streets of Gadgetzan'},
+        {value: 'One Night in Karazhan', viewValue: 'One Night in Karazhan'},
+        {value: 'Whispers of the Old Gods', viewValue: 'Whispers of the Old Gods'},
+        {value: 'League of Explorers', viewValue: 'League of Explorers'},
+        {value: 'The Grand Tournament', viewValue: 'The Grand Tournament'},
+        {value: 'Blackrock Mountain', viewValue: 'Blackrock Mountain'},
+        {value: 'Goblins vs Gnomes', viewValue: 'Goblins vs Gnomes'},
+        {value: 'Cure of Naxxramas', viewValue: 'Cure of Naxxramas'},
+        {value: 'Legacy', viewValue: 'Legacy'}
+      ]
+    }
+  ]
 
   constructor(private cardsService: CardsService) { }
 
