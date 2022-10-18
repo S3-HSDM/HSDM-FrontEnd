@@ -1,3 +1,4 @@
+<!-- Extra Filter bar -->
 <div class="container-fluid text-center">
     <mat-accordion>
         <mat-expansion-panel>
@@ -81,6 +82,7 @@
         </mat-expansion-panel>
     </mat-accordion>
 </div>
+<!-- Filter Bar -->
 <div class="container-fluid text-center">
     <h2>
         Class:
@@ -124,7 +126,7 @@
         </mat-button-toggle-group>
 
         <img src="assets/images/manacost.png"> :
-        <mat-button-toggle-group #manacost="matButtonToggleGroup" name="class" aria-label="Class">
+        <mat-button-toggle-group #manacost="matButtonToggleGroup" name="manacost" aria-label="Manacost">
             <mat-button-toggle value="" aria-label="All Manacost" checked="true"> All </mat-button-toggle>
             <mat-button-toggle value=0 aria-label="Manacost 0"> 0 </mat-button-toggle>
             <mat-button-toggle value=1 aria-label="Manacost 1"> 1 </mat-button-toggle>
@@ -145,14 +147,18 @@
                 <mat-icon>close</mat-icon>
             </button>
         </mat-form-field>
+        <mat-button-toggle-group class="small" #view="matButtonToggleGroup" name="view" aria-label="View">
+            <mat-button-toggle value="grid" aria-label="Grid View" checked="true"> <i class="material-icons">grid_view</i> </mat-button-toggle>
+            <mat-button-toggle value="table" aria-label="Tableview"> <i class="material-icons">table_rows</i> </mat-button-toggle>
+        </mat-button-toggle-group>
     </h2>
 </div>
-<div class="container-fluid" style="width:95%">
+<!-- Grid View -->
+<div class="container-fluid" style="width:95%" *ngIf="view.value == 'grid'">
     <mat-grid-list cols="3" rowHeight="300px">
         <div *ngFor="let card of cards$ | async">
             <!-- Search all cards with the chosen input -->
-            <div
-                *ngIf="card.name?.toLowerCase()?.includes(search.value) || card.effect?.toLowerCase()?.includes(search.value) 
+            <div *ngIf="card.name?.toLowerCase()?.includes(search.value) || card.effect?.toLowerCase()?.includes(search.value) 
             || card.heroPower?.toLowerCase()?.includes(search.value) || card.heroPowerEffect?.toLowerCase()?.includes(search.value) || search.value == ''">
                 <!-- Select cards from the chosen class -->
                 <div *ngIf="card.cardClass == class.value || class.value == ''">
@@ -176,8 +182,7 @@
                                                 <div
                                                     *ngIf="card.set == setValue || setValue == null || ((setValue == 'Legacy' || setValue == 'Core') && (card.set == 'Core & Legacy'))">
                                                     <!-- Select cards with the chosen game mode -->
-                                                    <div
-                                                        *ngIf="(mode.value == 'classic' && (card.set == 'Legacy' || card.set == 'Core & Legacy') && card.cardClass != 'Demon Hunter') 
+                                                    <div *ngIf="(mode.value == 'classic' && (card.set == 'Legacy' || card.set == 'Core & Legacy') && card.cardClass != 'Demon Hunter') 
                                                         || (mode.value == 'standard' && (card.set == 'Murder at Castle Nathria' || card.set == 'Voyage to the Sunken City' || card.set == 'Fractured in Alterac Valley' || card.set == 'United in Stormwind' || card.set == 'Forged in the Barrens' || card.set == 'Core' || card.set == 'Core & Legacy')) 
                                                         || (mode.value == 'wild' && (card.set != 'Murder at Castle Nathria' && card.set != 'Voyage to the Sunken City' && card.set != 'Fractured in Alterac Valley' && card.set != 'United in Stormwind' && card.set != 'Forged in the Barrens' && card.set != 'Core')) 
                                                         || mode.value == ''">
@@ -226,6 +231,31 @@
             </div>
         </div>
     </mat-grid-list>
+</div>
+<!-- Table View -->
+<div class="container-fluid" style="width:80%;;" *ngIf="view.value == 'table'">
+    <table id="sortTable" class="table table-dark table-hover table-responsive" style="width:100%">
+        <thead class="table table-dark">
+            <tr>
+                <th> Class </th>
+                <th> Name </th>
+                <th> Cost </th>
+                <th> Rarity </th>
+                <th> Set </th>
+                <th> Effect </th>
+            </tr>
+        </thead>
+        <tbody class="table">
+            <tr *ngFor="let card of cards$ | async">
+                <td> {{card.cardClass}}</td>
+                <td> {{card.name}} </td>
+                <td> {{card.cost}} </td>
+                <td> {{card.rarity}} </td>
+                <td> {{card.set}} </td>
+                <td> {{card.effect}} </td>
+            </tr>
+        </tbody>
+    </table>
 </div>
 
 <!-- id?: number;

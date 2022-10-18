@@ -18,6 +18,10 @@
     max-width: 100%;
   }
 
+  .container-fluid mat-button-toggle-group.small {
+    margin-right: 10px;
+  } 
+
   .container-fluid mat-form-field {
     margin-right: 10px;
     width: 300px;
@@ -31,8 +35,8 @@
     height: 100%
   }
 
-  .search-field {
-    width: 300px;
+  .container-fluid mat-form-field.search-field {
+    width: 200px;
   }
 
   .search-field-extra-filters {
