@@ -247,12 +247,24 @@
         </thead>
         <tbody class="table">
             <tr *ngFor="let card of cards$ | async">
-                <td> {{card.cardClass}}</td>
-                <td> {{card.name}} </td>
-                <td> {{card.cost}} </td>
-                <td> {{card.rarity}} </td>
-                <td> {{card.set}} </td>
-                <td> {{card.effect}} </td>
+                <td *ngIf="(card.name?.toLowerCase()?.includes(search.value) || card.effect?.toLowerCase()?.includes(search.value) 
+                || card.heroPower?.toLowerCase()?.includes(search.value) || card.heroPowerEffect?.toLowerCase()?.includes(search.value) || search.value == '') 
+                && (card.cardClass == class.value || class.value == '') && (card.cost == manacost.value || manacost.value == '')"> {{card.cardClass}} </td>
+                <td *ngIf="(card.name?.toLowerCase()?.includes(search.value) || card.effect?.toLowerCase()?.includes(search.value) 
+                || card.heroPower?.toLowerCase()?.includes(search.value) || card.heroPowerEffect?.toLowerCase()?.includes(search.value) || search.value == '') 
+                && (card.cardClass == class.value || class.value == '') && (card.cost == manacost.value || manacost.value == '')"> {{card.name}} </td>
+                <td *ngIf="(card.name?.toLowerCase()?.includes(search.value) || card.effect?.toLowerCase()?.includes(search.value) 
+                || card.heroPower?.toLowerCase()?.includes(search.value) || card.heroPowerEffect?.toLowerCase()?.includes(search.value) || search.value == '') 
+                && (card.cardClass == class.value || class.value == '') && (card.cost == manacost.value || manacost.value == '')"> {{card.cost}} </td>
+                <td *ngIf="(card.name?.toLowerCase()?.includes(search.value) || card.effect?.toLowerCase()?.includes(search.value) 
+                || card.heroPower?.toLowerCase()?.includes(search.value) || card.heroPowerEffect?.toLowerCase()?.includes(search.value) || search.value == '') 
+                && (card.cardClass == class.value || class.value == '') && (card.cost == manacost.value || manacost.value == '')"> {{card.rarity}} </td>
+                <td *ngIf="(card.name?.toLowerCase()?.includes(search.value) || card.effect?.toLowerCase()?.includes(search.value) 
+                || card.heroPower?.toLowerCase()?.includes(search.value) || card.heroPowerEffect?.toLowerCase()?.includes(search.value) || search.value == '') 
+                && (card.cardClass == class.value || class.value == '') && (card.cost == manacost.value || manacost.value == '')"> {{card.set}} </td>
+                <td *ngIf="(card.name?.toLowerCase()?.includes(search.value) || card.effect?.toLowerCase()?.includes(search.value) 
+                || card.heroPower?.toLowerCase()?.includes(search.value) || card.heroPowerEffect?.toLowerCase()?.includes(search.value) || search.value == '') 
+                && (card.cardClass == class.value || class.value == '') && (card.cost == manacost.value || manacost.value == '')"> {{card.effect}} </td>
             </tr>
         </tbody>
     </table>
