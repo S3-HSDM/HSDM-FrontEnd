@@ -8,6 +8,7 @@ const routes: Routes = [
   { path: 'cards', component: CardsComponent },
   { path: 'decks', component: DecksComponent},
   { path: '', component: HomeComponent },
+  // { path: '**', component: PageNotFoundComponent },
 ];
 
 @NgModule({

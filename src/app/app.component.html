@@ -1,4 +1,5 @@
-  <nav class="navbar navbar-dark navbar-expand-lg bg-dark">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />  
+<nav class="navbar navbar-dark navbar-expand-lg bg-dark">
     <div class="container-fluid">
       <a class="navbar-brand" href="">HSDM</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -14,6 +15,10 @@
           </li>
         </ul>
       </div>
+      <mat-button-toggle-group #admin="matButtonToggleGroup" name="admin" aria-label="User or Admin">
+        <mat-button-toggle aria-label="User View" [checked]="getAdminStatus() == 'false'" (click)="changeAdminStatus('false')"> <span class="material-symbols-outlined">person</span> </mat-button-toggle>
+        <mat-button-toggle value="true" aria-label="Admin view" [checked]="getAdminStatus() == 'true'" (click)="changeAdminStatus('true')"> <span class="material-symbols-outlined">admin_panel_settings</span> </mat-button-toggle>
+      </mat-button-toggle-group>
     </div>
   </nav>
 <router-outlet></router-outlet>

@@ -1,17 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Card } from 'src/app/models/Card';
 import { CardsService } from 'src/app/services/cards.service';
 import { FormControl } from '@angular/forms';
 
-interface Attack {
-  value: string;
-  viewValue: string;
-}
-interface Health {
-  value: string;
-  viewValue: string;
-}
 interface Rarity {
   value: string;
   viewValue: string;
@@ -47,6 +39,10 @@ interface SetGroup {
 
 
 export class CardsComponent implements OnInit {
+
+  getAdminStatus(){
+    return localStorage.getItem('admin');
+  }
 
   cards$: Observable<Card[]> = new Observable;
   rarityValue = null;
