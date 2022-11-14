@@ -1,0 +1,20 @@
+    .container-fluid mat-grid-tile {
+      max-width: 600px;
+    }
+    
+    .container-fluid mat-grid-tile img {
+      height: 100%
+    }
+  
+    .container-fluid mat-form-field.search-field {
+      width: 300px;
+    }
+  
+    ::ng-deep .mat-select-panel {
+      max-height: 75% !important;
+    }
+
+    button {
+        background-color: #543f30;
+        color: #e9d4a9;
+    }

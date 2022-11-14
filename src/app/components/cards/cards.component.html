@@ -1,7 +1,3 @@
-<h1 *ngIf="getAdminStatus() == 'true'">
-    Admin Mode is on!
-</h1>
-
 <!-- Extra Filter bar -->
 <div class="container-fluid text-center">
     <mat-accordion [hidden]="view.value != 'grid'">
@@ -159,7 +155,7 @@
 </div>
 <!-- Grid View -->
 <div class="container-fluid" style="width:95%" *ngIf="view.value == 'grid'">
-    <mat-grid-list cols="3" rowHeight="300px">
+    <mat-grid-list cols="6" rowHeight="300px">
         <div *ngFor="let card of cards$ | async">
             <!-- Search all cards with the chosen input -->
             <div *ngIf="card.name?.toLowerCase()?.includes(search.value) || card.effect?.toLowerCase()?.includes(search.value) 
@@ -192,7 +188,7 @@
                                                         || mode.value == ''">
                                                         <mat-grid-tile>
                                                             <img src="{{card.image}}">
-                                                            <ul>
+                                                            <!-- <ul>
                                                                 <li><b>Name:</b> {{card.name}}</li>
                                                                 <li><b>Class:</b> {{card.cardClass}}</li>
                                                                 <li><b>Manacost:</b> {{card.cost}}</li>
@@ -220,7 +216,7 @@
                                                                 <li *ngIf="card.heroPowerCost!= null"><b>Heropower
                                                                         Cost:</b>
                                                                     {{card.heroPowerCost}}</li>
-                                                            </ul>
+                                                            </ul> -->
                                                         </mat-grid-tile>
                                                     </div>
                                                 </div>

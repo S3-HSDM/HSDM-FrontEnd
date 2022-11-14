@@ -1,5 +1,5 @@
 .icon-button{
-    background: none;
+  background: none;
     padding: 0;
     border: 0;
     cursor: pointer;
@@ -45,4 +45,24 @@
 
   ::ng-deep .mat-select-panel {
     max-height: 75% !important;
+  }
+
+  ::ng-deep .mat-expansion-panel{
+    background-image: url('../../../assets/images/background.jpg') !important;
+  }
+
+  ::ng-deep div.container-fluid.text-center .mat-button-toggle{
+    background-image: url('../../../assets/images/background.jpg');
+    border-left: solid 1px #543f30 !important;
+    color: #543f30;
+  }
+
+  ::ng-deep div.container-fluid.text-center .mat-button-toggle-checked{
+    background-color: #543f30 !important;
+    color: #e9d4a9 !important;
+    background-image: none;
+  }
+
+  ::ng-deep div.container-fluid.text-center .mat-button-toggle-group-appearance-standard{
+    border: solid 2px #543f30 !important;
   }

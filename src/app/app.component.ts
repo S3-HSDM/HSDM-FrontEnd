@@ -12,6 +12,7 @@ export class AppComponent {
   
   changeAdminStatus(value: string) {
     localStorage.setItem('admin',value);
+    window.location.reload();
   }
 
   getAdminStatus(){

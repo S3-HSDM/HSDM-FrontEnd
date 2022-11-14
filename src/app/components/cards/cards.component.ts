@@ -39,11 +39,6 @@ interface SetGroup {
 
 
 export class CardsComponent implements OnInit {
-
-  getAdminStatus(){
-    return localStorage.getItem('admin');
-  }
-
   cards$: Observable<Card[]> = new Observable;
   rarityValue = null;
   cardTypeValue = null;
