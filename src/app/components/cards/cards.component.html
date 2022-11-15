@@ -82,6 +82,9 @@
         </mat-expansion-panel>
     </mat-accordion>
 </div>
+<div class="container-fluid text-center toptable">
+    <p [hidden]="view.value != 'table'"> <br/> </p>
+</div>
 <!-- Filter Bar -->
 <div class="container-fluid text-center bottom">
     <h2>
@@ -155,7 +158,7 @@
 </div>
 <!-- Grid View -->
 <div class="container-fluid" style="width:95%" *ngIf="view.value == 'grid'">
-    <mat-grid-list cols="6" rowHeight="300px">
+    <mat-grid-list [cols]="breakpoint" rowHeight="300px" (window:resize)="onResize($event)">
         <div *ngFor="let card of cards$ | async">
             <!-- Search all cards with the chosen input -->
             <div *ngIf="card.name?.toLowerCase()?.includes(search.value) || card.effect?.toLowerCase()?.includes(search.value) 
