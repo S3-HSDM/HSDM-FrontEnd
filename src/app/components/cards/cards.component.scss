@@ -37,10 +37,20 @@
 
   .container-fluid mat-form-field.search-field {
     width: 200px;
+    color:#e9d4a9 !important;
   }
 
   .search-field-extra-filters {
     width: 200px;
+  }
+
+  .container-fluid.text-center.top {
+    background-image: url('../../../assets/images/undernavtop.png') !important;
+  }
+
+  .container-fluid.text-center.bottom {
+    background-image: url('../../../assets/images/undernavbottom.png') !important;
+    color:#e9d4a9;
   }
 
   ::ng-deep .mat-select-panel {
@@ -48,21 +58,58 @@
   }
 
   ::ng-deep .mat-expansion-panel{
-    background-image: url('../../../assets/images/background.jpg') !important;
+    background-image: url('../../../assets/images/undernavtop.png') !important;
+  }
+
+  ::ng-deep .mat-expansion-panel-header-title {
+    color: #e9d4a9 !important;
+  }
+
+  ::ng-deep .mat-expansion-indicator::after {
+    color: #e9d4a9 !important;
+  }
+
+  ::ng-deep .mat-form-field-label {
+    color: #e9d4a9 !important;
+  }
+
+  ::ng-deep .mat-form-field-underline::before {
+    background-color: #e9d4a9 !important;
+  }
+
+  ::ng-deep .mat-form-field-underline {
+    background-color: #e9d4a9 !important;
+  }
+
+  ::ng-deep .mat-input-element {
+    color: #e9d4a9 !important;
+  }
+
+  ::ng-deep .mat-icon-button {
+    color: #e9d4a9 !important;
+  }
+
+  ::ng-deep .mat-select-value {
+    color: #e9d4a9 !important;
+  }
+
+  ::ng-deep .mat-select-arrow {
+    color: #e9d4a9 !important;
   }
 
   ::ng-deep div.container-fluid.text-center .mat-button-toggle{
-    background-image: url('../../../assets/images/background.jpg');
-    border-left: solid 1px #543f30 !important;
-    color: #543f30;
+    background-image: url('../../../assets/images/undernav.jpg');
+    border-left: solid 1px #e9d4a9 !important;
+    color: #e9d4a9;
+    border-top: none !important;
   }
 
   ::ng-deep div.container-fluid.text-center .mat-button-toggle-checked{
-    background-color: #543f30 !important;
-    color: #e9d4a9 !important;
+    background-color: #e9d4a9 !important;
+    color: #5d1516 !important;
     background-image: none;
   }
 
   ::ng-deep div.container-fluid.text-center .mat-button-toggle-group-appearance-standard{
-    border: solid 2px #543f30 !important;
+    border: solid 2px #e9d4a9 !important;
   }
