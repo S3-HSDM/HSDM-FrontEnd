@@ -19,6 +19,8 @@ export class AppComponent {
     return localStorage.getItem('admin');
   }
 
+  isCollapsed = true;
+  
   constructor(private router: Router) {
   }
 }
