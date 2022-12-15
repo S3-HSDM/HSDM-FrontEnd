@@ -70,40 +70,21 @@
     background-image: url('../../../assets/images/undernavtop.png') !important;
   }
 
-  ::ng-deep .mat-expansion-panel-header-title {
-    color: #e9d4a9 !important;
-  }
-
-  ::ng-deep .mat-expansion-indicator::after {
-    color: #e9d4a9 !important;
-  }
-
-  ::ng-deep .mat-form-field-label {
-    color: #e9d4a9 !important;
-  }
-
-  ::ng-deep .mat-form-field-underline::before {
-    background-color: #e9d4a9 !important;
-  }
-
-  ::ng-deep .mat-form-field-underline {
-    background-color: #e9d4a9 !important;
-  }
-
-  ::ng-deep .mat-input-element {
-    color: #e9d4a9 !important;
-  }
-
-  ::ng-deep .mat-icon-button {
-    color: #e9d4a9 !important;
-  }
-
-  ::ng-deep .mat-select-value {
-    color: #e9d4a9 !important;
-  }
-
+  ::ng-deep .mat-expansion-panel-header-title, ::ng-deep .mat-expansion-panel-header-description, ::ng-deep .mat-expansion-indicator::after, ::ng-deep .mat-form-field-label,
+  ::ng-deep .mat-form-field-underline::before, ::ng-deep .mat-form-field-underline, ::ng-deep .mat-input-element, ::ng-deep .mat-icon-button, ::ng-deep .mat-select-value,
   ::ng-deep .mat-select-arrow {
     color: #e9d4a9 !important;
+  }
+
+  ::ng-deep .mat-expansion-panel-header-description {
+    flex-grow: 0 !important;
+    margin-right: 35px !important;
+  }
+
+  ::ng-deep .mat-expansion-panel-header-title {
+    flex-direction: row-reverse !important;
+    margin-right: 10px !important;
+    font-weight: bold; 
   }
 
   ::ng-deep div.container-fluid.text-center .mat-button-toggle{

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Card } from 'src/app/models/Card';
 import { CardsService } from 'src/app/services/cards.service';
@@ -37,7 +37,6 @@ interface SetGroup {
   styleUrls: ['./cards.component.scss']
 })
 
-
 export class CardsComponent implements OnInit {
   cards$: Observable<Card[]> = new Observable;
   breakpoint: number | undefined;
@@ -46,6 +45,7 @@ export class CardsComponent implements OnInit {
   tribeValue = null;
   spellSchoolValue = null;
   setValue = null;
+  panelOpenState = false;
 
   rarity: Rarity[] = [
     { value: 'Free', viewValue: 'Free' },
@@ -129,7 +129,7 @@ export class CardsComponent implements OnInit {
     }
   ]
 
-  constructor(private cardsService: CardsService) { }
+  constructor(private cardsService: CardsService, private changeDetectorRef: ChangeDetectorRef) { }
 
   ngOnInit(): void {
     this.cards$ = this.cardsService.getCards();
@@ -146,6 +146,8 @@ export class CardsComponent implements OnInit {
     } else if(window.innerWidth > 1320){
       this.breakpoint = 6;
     }
+
+    this.changeDetectorRef.detectChanges();
   }
 
   onResize(event) {

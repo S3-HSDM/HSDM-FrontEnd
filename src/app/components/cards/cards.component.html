@@ -1,9 +1,12 @@
 <!-- Extra Filter bar -->
 <div class="container-fluid text-center top">
     <mat-accordion [hidden]="view.value != 'grid'">
-        <mat-expansion-panel>
+        <mat-expansion-panel hideToggle="true">
             <mat-expansion-panel-header>
-                <mat-panel-title> Filters </mat-panel-title>
+                <mat-panel-title>Filters</mat-panel-title>
+                <mat-panel-description>
+                    <mat-icon><span class="material-symbols-rounded">tune</span></mat-icon>
+                  </mat-panel-description>
             </mat-expansion-panel-header>
             <h3>
                 <mat-form-field appearance="fill" class="search-field-extra-filter">
