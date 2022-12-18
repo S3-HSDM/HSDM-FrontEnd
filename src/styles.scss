@@ -3,8 +3,9 @@ html, body { height: 100%; }
 body { 
     margin: 0; 
     font-family: Roboto, "Helvetica Neue", sans-serif; 
-    background-color: beige;
+    background-image: url('./assets/images/background.jpg') !important;
     color: black;
+    box-shadow: none !important;
 }
 
 .button-row {

@@ -1,0 +1,60 @@
+<div class="container-fluid text-center toptable">
+    <p> <br/> </p>
+</div>
+<div class="container-fluid" style="width:95%">
+    <h2>
+        <mat-form-field class="search-field">
+            <mat-label>Search</mat-label>
+            <input matInput type="text" #search="">
+            <button *ngIf="search.value" matSuffix mat-icon-button aria-label="Clear" (click)="search.value=''">
+                <mat-icon>close</mat-icon>
+            </button>
+        </mat-form-field>
+    </h2>
+</div>
+
+<div class="container-fluid" style="width:95%">
+    <mat-grid-list cols="3" rowHeight="300px">
+        <div *ngFor="let card of cards$ | async">
+            <!-- Search all cards with the chosen input -->
+            <div
+                *ngIf="card.name?.toLowerCase()?.includes(search.value) || card.effect?.toLowerCase()?.includes(search.value) 
+            || card.heroPower?.toLowerCase()?.includes(search.value) || card.heroPowerEffect?.toLowerCase()?.includes(search.value) || search.value == ''">
+                <mat-grid-tile>
+                    <img src="{{card.image}}">
+                    <ul>
+                        <button mat-raised-button> Edit </button>
+                        <li><b>Name:</b> {{card.name}}</li>
+                        <li><b>Class:</b> {{card.cardClass}}</li>
+                        <li><b>Manacost:</b> {{card.cost}}</li>
+                        <li><b>Rarity:</b> {{card.rarity}}</li>
+                        <li><b>Set:</b> {{card.set}}</li>
+                        <li><b>Effect:</b> {{card.effect}}</li>
+                        <li *ngIf="card.attack != null"><b>Attack:</b>
+                            {{card.attack}}
+                        </li>
+                        <li *ngIf="card.health != null"><b>Health:</b>
+                            {{card.health}}
+                        </li>
+                        <li *ngIf="card.tribe != null"><b>Tribe:</b>
+                            {{card.tribe}}
+                        </li>
+                        <li *ngIf="card.spellType!= null"><b>Spell School:</b>
+                            {{card.spellType}}</li>
+                        <li *ngIf="card.durability != null"><b>Durability:</b>
+                            {{card.durability}}</li>
+                        <li *ngIf="card.heroPower!= null"><b>Heropower:</b>
+                            {{card.heroPower}}</li>
+                        <li *ngIf="card.heroPowerEffect!= null"><b>Heropower
+                                Effect:</b>
+                            {{card.heroPowerEffect}}</li>
+                        <li *ngIf="card.heroPowerCost!= null"><b>Heropower
+                                Cost:</b>
+                            {{card.heroPowerCost}}</li>
+                    </ul>
+                </mat-grid-tile>
+            </div>
+        </div>
+
+    </mat-grid-list>
+</div>

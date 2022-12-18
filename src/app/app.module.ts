@@ -8,6 +8,10 @@ import { DecksComponent } from './components/decks/decks.component';
 import { CardsComponent } from './components/cards/cards.component';
 import { HomeComponent } from './components/home/home.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { AdminCardGuardService, CardAdminGuardService } from './services/admin-guard.service';
+import { CardsAdminComponent } from './components/cards-admin/cards-admin.component';
+
 // Angular Material imports
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatButtonModule } from '@angular/material/button';
@@ -22,7 +26,9 @@ import { MatExpansionModule } from '@angular/material/expansion';
     AppComponent,
     DecksComponent,
     CardsComponent,
-    HomeComponent
+    HomeComponent,
+    PageNotFoundComponent,
+    CardsAdminComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +44,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
     MatExpansionModule,
     NgbModule
   ],
-  providers: [],
+  providers: [AdminCardGuardService, CardAdminGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

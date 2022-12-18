@@ -1,13 +1,12 @@
-<h1 *ngIf="getAdminStatus() == 'true'">
-    Admin Mode is on!
-</h1>
-
 <!-- Extra Filter bar -->
-<div class="container-fluid text-center">
+<div class="container-fluid text-center top">
     <mat-accordion [hidden]="view.value != 'grid'">
-        <mat-expansion-panel>
+        <mat-expansion-panel hideToggle="true">
             <mat-expansion-panel-header>
-                <mat-panel-title> Filters </mat-panel-title>
+                <mat-panel-title>Filters</mat-panel-title>
+                <mat-panel-description>
+                    <mat-icon><span class="material-symbols-rounded">tune</span></mat-icon>
+                  </mat-panel-description>
             </mat-expansion-panel-header>
             <h3>
                 <mat-form-field appearance="fill" class="search-field-extra-filter">
@@ -86,8 +85,11 @@
         </mat-expansion-panel>
     </mat-accordion>
 </div>
+<div class="container-fluid text-center toptable">
+    <p [hidden]="view.value != 'table'"> <br/> </p>
+</div>
 <!-- Filter Bar -->
-<div class="container-fluid text-center">
+<div class="container-fluid text-center bottom">
     <h2>
         Class:
         <mat-button-toggle-group #class="matButtonToggleGroup" name="class" aria-label="Class">
@@ -159,7 +161,7 @@
 </div>
 <!-- Grid View -->
 <div class="container-fluid" style="width:95%" *ngIf="view.value == 'grid'">
-    <mat-grid-list cols="3" rowHeight="300px">
+    <mat-grid-list [cols]="breakpoint" rowHeight="300px" (window:resize)="onResize($event)">
         <div *ngFor="let card of cards$ | async">
             <!-- Search all cards with the chosen input -->
             <div *ngIf="card.name?.toLowerCase()?.includes(search.value) || card.effect?.toLowerCase()?.includes(search.value) 
@@ -192,7 +194,7 @@
                                                         || mode.value == ''">
                                                         <mat-grid-tile>
                                                             <img src="{{card.image}}">
-                                                            <ul>
+                                                            <!-- <ul>
                                                                 <li><b>Name:</b> {{card.name}}</li>
                                                                 <li><b>Class:</b> {{card.cardClass}}</li>
                                                                 <li><b>Manacost:</b> {{card.cost}}</li>
@@ -220,7 +222,7 @@
                                                                 <li *ngIf="card.heroPowerCost!= null"><b>Heropower
                                                                         Cost:</b>
                                                                     {{card.heroPowerCost}}</li>
-                                                            </ul>
+                                                            </ul> -->
                                                         </mat-grid-tile>
                                                     </div>
                                                 </div>

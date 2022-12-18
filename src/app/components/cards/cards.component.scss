@@ -1,5 +1,5 @@
 .icon-button{
-    background: none;
+  background: none;
     padding: 0;
     border: 0;
     cursor: pointer;
@@ -16,10 +16,14 @@
   .container-fluid mat-button-toggle-group {
     margin-right: 10px;
     max-width: 100%;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
   }
 
   .container-fluid mat-button-toggle-group.small {
     margin-right: 10px;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
   } 
 
   .container-fluid mat-form-field {
@@ -37,12 +41,64 @@
 
   .container-fluid mat-form-field.search-field {
     width: 200px;
+    color:#e9d4a9 !important;
   }
 
   .search-field-extra-filters {
     width: 200px;
   }
 
+  .container-fluid.text-center.top {
+    background-image: url('../../../assets/images/undernavtop.png') !important;
+  }
+
+  .container-fluid.text-center.toptable  {
+    background-image: url('../../../assets/images/undernavtop.png') !important;
+    margin-bottom: -12px;
+  }
+
+  .container-fluid.text-center.bottom {
+    background-image: url('../../../assets/images/undernavbottom.png') !important;
+    color:#e9d4a9;
+  }
+
   ::ng-deep .mat-select-panel {
     max-height: 75% !important;
+  }
+
+  ::ng-deep .mat-expansion-panel{
+    background-image: url('../../../assets/images/undernavtop.png') !important;
+  }
+
+  ::ng-deep .mat-expansion-panel-header-title, ::ng-deep .mat-expansion-panel-header-description, ::ng-deep .mat-expansion-indicator::after, ::ng-deep .mat-form-field-label,
+  ::ng-deep .mat-form-field-underline::before, ::ng-deep .mat-form-field-underline, ::ng-deep .mat-input-element, ::ng-deep .mat-icon-button, ::ng-deep .mat-select-value,
+  ::ng-deep .mat-select-arrow {
+    color: #e9d4a9 !important;
+  }
+
+  ::ng-deep .mat-expansion-panel-header-description {
+    flex-grow: 0 !important;
+    margin-right: 35px !important;
+  }
+
+  ::ng-deep .mat-expansion-panel-header-title {
+    flex-direction: row-reverse !important;
+    margin-right: 10px !important;
+    font-weight: bold; 
+  }
+
+  ::ng-deep div.container-fluid.text-center .mat-button-toggle{
+    background-image: url('../../../assets/images/undernav.jpg');
+    color: #e9d4a9;
+    border-top: none !important;
+  }
+
+  ::ng-deep div.container-fluid.text-center .mat-button-toggle-checked{
+    background-color: #e9d4a9 !important;
+    color: #5d1516 !important;
+    background-image: none;
+  }
+
+  ::ng-deep div.container-fluid.text-center .mat-button-toggle-group-appearance-standard{
+    border: solid 2px #e9d4a9 !important;
   }
