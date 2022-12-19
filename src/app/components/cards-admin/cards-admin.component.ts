@@ -3,7 +3,8 @@ import { Observable } from 'rxjs';
 import { Card } from 'src/app/models/Card';
 import { CardsService } from 'src/app/services/cards.service';
 import { Router } from '@angular/router';
-import { FormControl } from '@angular/forms';
+import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgForm, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-cards-admin',
@@ -13,8 +14,11 @@ import { FormControl } from '@angular/forms';
 export class CardsAdminComponent implements OnInit {
 
   cards$: Observable<Card[]> = new Observable;
+  closeResult: string;
+  cardType: string;
+  cardToAdd: Card;
 
-  constructor(private cardsService: CardsService, private router: Router) { }
+  constructor(private cardsService: CardsService, private router: Router, private modalService: NgbModal) { }
 
   ngOnInit(): void {
     this.cards$ = this.cardsService.getCards();
@@ -25,7 +29,7 @@ export class CardsAdminComponent implements OnInit {
     window.location.reload();
   }
 
-  public duplicateCard(card: Card) {
+  public addCard(card: Card) {
     this.cardsService.addCard(card)
     window.location.reload();
   }
@@ -33,5 +37,28 @@ export class CardsAdminComponent implements OnInit {
   public deleteCard(id: number) {
     this.cardsService.deleteCard(id)
     window.location.reload();
+  }
+
+  open(content) {
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+  }
+
+  onSubmit(form: NgForm) {
+    this.addCard(form.value)
+    this.modalService.dismissAll(); //dismiss the modal
+  }
+  
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return `with: ${reason}`;
+    }
   }
 }

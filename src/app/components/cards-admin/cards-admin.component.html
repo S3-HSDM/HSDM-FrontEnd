@@ -10,7 +10,7 @@
                 <mat-icon>close</mat-icon>
             </button>
         </mat-form-field>
-        <button mat-raised-button class="add"> Add Card </button>
+        <button mat-raised-button class="add" (click)="open(addContent)"> Add Card </button>
     </h2>
 </div>
 
@@ -24,7 +24,7 @@
                 <mat-grid-tile>
                     <img src="{{card.image}}">
                     <ul>
-                        <button mat-raised-button class="edit" (click)="updateCard(card)"> Edit name to test </button> <button mat-raised-button class="delete" (click)="deleteCard(card.id)"> Delete </button> <button mat-raised-button class="delete" (click)="duplicateCard(card)"> Double </button>
+                        <button mat-raised-button class="edit" (click)="updateCard(card)"> Edit name to test </button> <button mat-raised-button class="delete" (click)="deleteCard(card.id)"> Delete </button>
                         <li><b>Name:</b> {{card.name}}</li>
                         <li><b>Class:</b> {{card.cardClass}}</li>
                         <li><b>Manacost:</b> {{card.cost}}</li>
@@ -59,3 +59,229 @@
 
     </mat-grid-list>
 </div>
+
+<ng-template #addContent let-modal>
+    <div class="modal-header">
+      <h1 class="modal-title" id="modal-basic-title"><strong> Add card </strong></h1>
+    </div>
+    <div class="modal-body">
+        <form #form="ngForm" (ngSubmit)="onSubmit(form)" novalidate>
+        <mat-radio-group #cardType="matRadioGroup" aria-label="Select an option">
+            <mat-radio-button value="hero" checked="true">Herocard</mat-radio-button>
+            <mat-radio-button value="minion">Minioncard</mat-radio-button>
+            <mat-radio-button value="spell">Spellcard</mat-radio-button>
+            <mat-radio-button value="weapon">Weaponcard</mat-radio-button>
+          </mat-radio-group>
+          <div class="form-group">
+            <label for="name"> <strong> Cardname </strong> </label>
+            <div class="input-group">
+              <input id="name" name="name" class="form-control" ngModel>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="cardClass"> <strong> Cardclass </strong> </label>
+            <div class="input-group">
+              <input id="class" class="form-control" name="cardClass" ngModel>
+            </div>
+        </div>
+        <div class="form-group">
+            <label  for="cost"> <strong> Cost </strong> </label>
+            <div class="input-group">
+              <input type="number" id="cost" class="form-control" name="cost" ngModel>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="rarity"> <strong> Rarity </strong> </label>
+            <div class="input-group">
+              <select id="rarity" class="form-control" name="rarity" ngModel>
+                <option value="" disabled selected hidden>--Choose a Rarity--</option>
+                <option value="Free">Free</option>
+                <option value="Common">Common</option>
+                <option value="Rare">Rare</option>
+                <option value="Epic">Epic</option>
+                <option value="Legendary">Legendary</option>
+              </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="set"> <strong> Set </strong> </label>
+            <div class="input-group">
+              <input id="set" class="form-control" name="set" ngModel>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="effect"> <strong> Effect </strong> </label>
+            <div class="input-group">
+              <textarea matInput id="effect" class="form-control" name="effect" ngModel></textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="image"> <strong> Image </strong> </label>
+            <div class="input-group">
+              <textarea matInput id="image" class="form-control" name="image" ngModel></textarea>
+            </div>
+        </div>
+        <div class="form-group" id="attackform" [hidden]="cardType.value != 'minion'">
+            <label for="attack"> <strong> Attack </strong> </label>
+            <div class="input-group">
+              <input type="number" id="minionattack" class="form-control" name="attack" ngModel>
+            </div>
+        </div>
+        <div class="form-group" id="attackform" [hidden]="cardType.value != 'weapon'">
+            <label  for="attack"> <strong> Attack </strong> </label>
+            <div class="input-group">
+              <input type="number" id="weaponattack" class="form-control" name="attack" ngModel>
+            </div>
+        </div>
+        <div class="form-group" id="healthform" [hidden]="cardType.value != 'minion'">
+            <label  for="health"> <strong> Health </strong> </label>
+            <div class="input-group">
+              <input type="number" id="health" class="form-control" name="health" ngModel>
+            </div>
+        </div>
+        <div class="form-group" id="tribeform"[hidden]="cardType.value != 'minion'">
+            <label  for="tribe"> <strong> Tribe </strong> </label>
+            <div class="input-group">
+              <input id="tribe" class="form-control" name="tribe" ngModel>
+            </div>
+        </div>
+        <div class="form-group" id="spelltypeform" [hidden]="cardType.value != 'spell'">
+            <label  for="spelltype"> <strong> Spelltype </strong> </label>
+            <div class="input-group">
+              <input id="spelltype" class="form-control" name="spelltype" ngModel>
+            </div>
+        </div>
+        <div class="form-group" id="durabilityform" [hidden]="cardType.value != 'weapon'">
+            <label  for="durability"> <strong> Durability </strong> </label>
+            <div class="input-group">
+              <input type="number" id="durability" class="form-control" name="durability" ngModel>
+            </div>
+        </div>
+        <div class="form-group" id="hpform" [hidden]="cardType.value != 'hero'">
+            <label  for="heroPower"> <strong> Heropower </strong> </label>
+            <div class="input-group">
+              <input id="hp" class="form-control" name="heroPower" ngModel>
+            </div>
+        </div>
+        <div class="form-group" id="hpeffectform" [hidden]="cardType.value != 'hero'">
+            <label  for="heroPowerEffect"> <strong> Heropowereffect </strong> </label>
+            <div class="input-group">
+              <textarea id="hpeffect" class="form-control" name="heroPowerEffect" ngModel></textarea>
+            </div>
+        </div>
+        <div class="form-group" id="hpcostform" [hidden]="cardType.value != 'hero'">
+            <label  for="heroPowerCost"> <strong> Heropowercost </strong> </label>
+            <div class="input-group">
+              <input type="number" id="hpcost" class="form-control" name="heroPowerCost" ngModel>
+            </div>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button mat-raised-button class="delete" type="button" aria-label="Close" (click)="modal.dismiss('Cross click')" >Cancel</button>
+      <button mat-raised-button class="confirm" data-dismiss="modal" (click)="onSubmit(form)" >Add card</button>
+    </div>
+  </ng-template>
+
+  <ng-template #editContent let-modal>
+    <div class="modal-header">
+      <h1 class="modal-title" id="modal-basic-title"><strong> Edit card </strong></h1>
+    </div>
+    <div class="modal-body">
+      <form>
+        <div class="form-group">
+            <label> <strong> Cardname </strong> </label>
+            <div class="input-group">
+              <input id="name" class="form-control" >
+            </div>
+        </div>
+        <div class="form-group">
+            <label> <strong> Cardclass </strong> </label>
+            <div class="input-group">
+              <input id="class" class="form-control" >
+            </div>
+        </div>
+        <div class="form-group">
+            <label> <strong> Cost </strong> </label>
+            <div class="input-group">
+              <input id="cost" class="form-control" >
+            </div>
+        </div>
+        <div class="form-group">
+            <label> <strong> Rarity </strong> </label>
+            <div class="input-group">
+              <input id="rarity" class="form-control" >
+            </div>
+        </div>
+        <div class="form-group">
+            <label> <strong> Set </strong> </label>
+            <div class="input-group">
+              <input id="set" class="form-control" >
+            </div>
+        </div>
+        <div class="form-group">
+            <label> <strong> Effect </strong> </label>
+            <div class="input-group">
+              <textarea matInput id="effect" class="form-control" ></textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <label> <strong> Effect </strong> </label>
+            <div class="input-group">
+              <textarea matInput id="effect" class="form-control" ></textarea>
+            </div>
+        </div>
+        <div class="form-group" id="attackform">
+            <label> <strong> Attack </strong> </label>
+            <div class="input-group">
+              <input id="attack" class="form-control" >
+            </div>
+        </div>
+        <div class="form-group" id="healthform">
+            <label> <strong> Health </strong> </label>
+            <div class="input-group">
+              <input id="health" class="form-control" >
+            </div>
+        </div>
+        <div class="form-group" id="tribeform">
+            <label> <strong> Tribe </strong> </label>
+            <div class="input-group">
+              <input id="tribe" class="form-control" >
+            </div>
+        </div>
+        <div class="form-group" id="spelltypeform">
+            <label> <strong> Spelltype </strong> </label>
+            <div class="input-group">
+              <input id="spelltype" class="form-control" >
+            </div>
+        </div>
+        <div class="form-group" id="durabilityform">
+            <label> <strong> Durability </strong> </label>
+            <div class="input-group">
+              <input id="durability" class="form-control" >
+            </div>
+        </div>
+        <div class="form-group" id="hpform">
+            <label> <strong> Heropower </strong> </label>
+            <div class="input-group">
+              <input id="hp" class="form-control" >
+            </div>
+        </div>
+        <div class="form-group" id="hpeffectform">
+            <label> <strong> Heropowereffect </strong> </label>
+            <div class="input-group">
+              <textarea id="hpeffect" class="form-control" ></textarea>
+            </div>
+        </div>
+        <div class="form-group" id="hpcostform">
+            <label> <strong> Heropowercost </strong> </label>
+            <div class="input-group">
+              <input id="hpcost" class="form-control" >
+            </div>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" aria-label="Close" (click)="modal.dismiss('Cross click')" >Close</button>
+    </div>
+  </ng-template>

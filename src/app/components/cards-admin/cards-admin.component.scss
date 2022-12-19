@@ -23,11 +23,18 @@
     button.delete {
         background-color: red;
         color: white;
+        margin-right: 5px;
     }
 
     button.add {
       background-color: #5d1516;
       color: #e9d4a9;
+      justify-content:right;
+    }
+
+    button.confirm {
+      background-color: #008000;
+      color: white;
       justify-content:right;
     }
 
@@ -38,4 +45,16 @@
 
     .search-field {
       margin-right: 20px;
+    }
+
+    textarea {
+      color:black !important;
+      border: 1px solid #ced4da;
+      font-size: 1rem;
+      font-weight: 400;
+      padding: 0.375rem 0.75rem !important;
+    }
+
+    mat-radio-button {
+      margin-right: 10px;
     }

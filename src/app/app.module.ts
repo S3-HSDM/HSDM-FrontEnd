@@ -21,6 +21,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { MatRadioModule } from '@angular/material/radio';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
     MatIconModule,
     MatSelectModule,
     MatExpansionModule,
+    MatRadioModule,
     NgbModule
   ],
   providers: [AdminCardGuardService, CardAdminGuardService],
