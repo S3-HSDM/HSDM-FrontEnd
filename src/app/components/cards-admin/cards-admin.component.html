@@ -24,7 +24,7 @@
                 <mat-grid-tile>
                     <img src="{{card.image}}">
                     <ul>
-                        <button mat-raised-button class="edit" (click)="goToEditPage(card)"> Edit </button> <button mat-raised-button class="delete" (click)="deleteCard(card.id)"> Delete </button> <button mat-raised-button class="delete" (click)="duplicateCard(card)"> Double </button>
+                        <button mat-raised-button class="edit" (click)="updateCard(card)"> Edit name to test </button> <button mat-raised-button class="delete" (click)="deleteCard(card.id)"> Delete </button> <button mat-raised-button class="delete" (click)="duplicateCard(card)"> Double </button>
                         <li><b>Name:</b> {{card.name}}</li>
                         <li><b>Class:</b> {{card.cardClass}}</li>
                         <li><b>Manacost:</b> {{card.cost}}</li>

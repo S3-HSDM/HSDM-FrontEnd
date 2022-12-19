@@ -20,8 +20,9 @@ export class CardsAdminComponent implements OnInit {
     this.cards$ = this.cardsService.getCards();
   }
 
-  public goToEditPage(card: Card) {
-    this.router.navigate(['/admin-cards/edit/' + card.id])
+  public updateCard(card: Card) {
+    this.cardsService.updateCard(card)
+    window.location.reload();
   }
 
   public duplicateCard(card: Card) {
