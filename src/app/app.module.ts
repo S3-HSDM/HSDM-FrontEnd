@@ -11,6 +11,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { AdminCardGuardService, CardAdminGuardService } from './services/admin-guard.service';
 import { CardsAdminComponent } from './components/cards-admin/cards-admin.component';
+import { FormsModule } from '@angular/forms';
 
 // Angular Material imports
 import { MatGridListModule } from '@angular/material/grid-list';
@@ -20,6 +21,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { MatRadioModule } from '@angular/material/radio';
 
 @NgModule({
   declarations: [
@@ -34,6 +36,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    FormsModule,
     HttpClientModule,
     MatGridListModule,
     MatButtonModule,
@@ -42,6 +45,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
     MatIconModule,
     MatSelectModule,
     MatExpansionModule,
+    MatRadioModule,
     NgbModule
   ],
   providers: [AdminCardGuardService, CardAdminGuardService],

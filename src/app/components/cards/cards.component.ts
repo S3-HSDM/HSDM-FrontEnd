@@ -1,8 +1,9 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, Inject } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Card } from 'src/app/models/Card';
 import { CardsService } from 'src/app/services/cards.service';
 import { FormControl } from '@angular/forms';
+import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 interface Rarity {
   value: string;
@@ -46,6 +47,7 @@ export class CardsComponent implements OnInit {
   spellSchoolValue = null;
   setValue = null;
   panelOpenState = false;
+  closeResult: string;
 
   rarity: Rarity[] = [
     { value: 'Free', viewValue: 'Free' },
@@ -129,7 +131,7 @@ export class CardsComponent implements OnInit {
     }
   ]
 
-  constructor(private cardsService: CardsService, private changeDetectorRef: ChangeDetectorRef) { }
+  constructor(private cardsService: CardsService, private changeDetectorRef: ChangeDetectorRef, private modalService: NgbModal) { }
 
   ngOnInit(): void {
     this.cards$ = this.cardsService.getCards();
@@ -165,4 +167,57 @@ export class CardsComponent implements OnInit {
       this.breakpoint = 6
     }
   }
+
+  showMessage() {
+    window.alert("test")
+  }
+
+  openDetails(contentDetails, card: Card) {
+    this.modalService.open(contentDetails, {
+
+    })
+    document.getElementById('name').setAttribute('value', card.name);
+    document.getElementById('class').setAttribute('value', card.cardClass);
+    document.getElementById('cost').setAttribute('value', card.cost.toString());
+    document.getElementById('rarity').setAttribute('value', card.rarity);
+    document.getElementById('set').setAttribute('value', card.set);
+    document.getElementById('effect').innerHTML = card.effect;
+    if(card.attack != null){
+      document.getElementById('attack').setAttribute('value', card.attack.toString());
+    }else{
+      document.getElementById('attackform').remove();
+    }
+    if(card.health != null){
+      document.getElementById('health').setAttribute('value', card.health.toString());
+    }else{
+      document.getElementById('healthform').remove();
+    }
+    if(card.tribe != null){
+      document.getElementById('tribe').setAttribute('value', card.tribe);
+    }else{
+      document.getElementById('tribeform').remove();
+    }
+    if(card.spellType != null){
+      document.getElementById('spelltype').setAttribute('value', card.spellType);
+    }else{
+      document.getElementById('spelltypeform').remove();
+    }
+    if(card.durability != null){
+      document.getElementById('durability').setAttribute('value', card.durability.toString());
+    }else{
+      document.getElementById('durabilityform').remove();
+    }
+    if(card.heroPower != null){
+      document.getElementById('hp').setAttribute('value', card.heroPower);
+      document.getElementById('hpeffect').innerHTML = card.heroPowerEffect;
+      document.getElementById('hpcost').setAttribute('value', card.heroPowerCost.toString());
+    }else{
+      document.getElementById('hpform').remove();
+      document.getElementById('hpeffectform').remove();
+      document.getElementById('hpcostform').remove();
+    }
+  }
+  
+  
+
 }

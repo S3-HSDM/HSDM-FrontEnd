@@ -193,7 +193,7 @@
                                                         || (mode.value == 'wild' && (card.set != 'Murder at Castle Nathria' && card.set != 'Voyage to the Sunken City' && card.set != 'Fractured in Alterac Valley' && card.set != 'United in Stormwind' && card.set != 'Forged in the Barrens' && card.set != 'Core')) 
                                                         || mode.value == ''">
                                                         <mat-grid-tile>
-                                                            <img src="{{card.image}}">
+                                                            <img src="{{card.image}}" (click)="openDetails(contentDetails, card)">
                                                             <!-- <ul>
                                                                 <li><b>Name:</b> {{card.name}}</li>
                                                                 <li><b>Class:</b> {{card.cardClass}}</li>
@@ -275,6 +275,103 @@
         </tbody>
     </table>
 </div>
+
+<ng-template #contentDetails let-modal>
+    <div class="modal-header">
+      <h1 class="modal-title" id="modal-basic-title"><strong> Card info </strong></h1>
+    </div>
+    <div class="modal-body">
+      <form>
+        <div class="form-group">
+            <label> <strong> Cardname </strong> </label>
+            <div class="input-group">
+              <input id="name" class="form-control" disabled>
+            </div>
+        </div>
+        <div class="form-group">
+            <label> <strong> Cardclass </strong> </label>
+            <div class="input-group">
+              <input id="class" class="form-control" disabled>
+            </div>
+        </div>
+        <div class="form-group">
+            <label> <strong> Cost </strong> </label>
+            <div class="input-group">
+              <input id="cost" class="form-control" disabled>
+            </div>
+        </div>
+        <div class="form-group">
+            <label> <strong> Rarity </strong> </label>
+            <div class="input-group">
+              <input id="rarity" class="form-control" disabled>
+            </div>
+        </div>
+        <div class="form-group">
+            <label> <strong> Set </strong> </label>
+            <div class="input-group">
+              <input id="set" class="form-control" disabled>
+            </div>
+        </div>
+        <div class="form-group">
+            <label> <strong> Effect </strong> </label>
+            <div class="input-group">
+              <textarea matInput id="effect" class="form-control" disabled></textarea>
+            </div>
+        </div>
+        <div class="form-group" id="attackform">
+            <label> <strong> Attack </strong> </label>
+            <div class="input-group">
+              <input id="attack" class="form-control" disabled>
+            </div>
+        </div>
+        <div class="form-group" id="healthform">
+            <label> <strong> Health </strong> </label>
+            <div class="input-group">
+              <input id="health" class="form-control" disabled>
+            </div>
+        </div>
+        <div class="form-group" id="tribeform">
+            <label> <strong> Tribe </strong> </label>
+            <div class="input-group">
+              <input id="tribe" class="form-control" disabled>
+            </div>
+        </div>
+        <div class="form-group" id="spelltypeform">
+            <label> <strong> Spelltype </strong> </label>
+            <div class="input-group">
+              <input id="spelltype" class="form-control" disabled>
+            </div>
+        </div>
+        <div class="form-group" id="durabilityform">
+            <label> <strong> Durability </strong> </label>
+            <div class="input-group">
+              <input id="durability" class="form-control" disabled>
+            </div>
+        </div>
+        <div class="form-group" id="hpform">
+            <label> <strong> Heropower </strong> </label>
+            <div class="input-group">
+              <input id="hp" class="form-control" disabled>
+            </div>
+        </div>
+        <div class="form-group" id="hpeffectform">
+            <label> <strong> Heropowereffect </strong> </label>
+            <div class="input-group">
+              <textarea id="hpeffect" class="form-control" disabled></textarea>
+            </div>
+        </div>
+        <div class="form-group" id="hpcostform">
+            <label> <strong> Heropowercost </strong> </label>
+            <div class="input-group">
+              <input id="hpcost" class="form-control" disabled>
+            </div>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" aria-label="Close" (click)="modal.dismiss('Cross click')" >Close</button>
+    </div>
+  </ng-template>
 
 <!-- id?: number;
     name: string | undefined;
