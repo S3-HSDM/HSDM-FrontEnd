@@ -10,10 +10,11 @@
                 <mat-icon>close</mat-icon>
             </button>
         </mat-form-field>
+        <button mat-raised-button class="add"> Add Card </button>
     </h2>
 </div>
 
-<div class="container-fluid" style="width:95%">
+<div class="container-fluid" style="width:95%" id="card-container">
     <mat-grid-list cols="3" rowHeight="300px">
         <div *ngFor="let card of cards$ | async">
             <!-- Search all cards with the chosen input -->
@@ -23,7 +24,7 @@
                 <mat-grid-tile>
                     <img src="{{card.image}}">
                     <ul>
-                        <button mat-raised-button> Edit </button>
+                        <button mat-raised-button class="edit" (click)="goToEditPage(card)"> Edit </button> <button mat-raised-button class="delete" (click)="deleteCard(card.id)"> Delete </button> <button mat-raised-button class="delete" (click)="duplicateCard(card)"> Double </button>
                         <li><b>Name:</b> {{card.name}}</li>
                         <li><b>Class:</b> {{card.cardClass}}</li>
                         <li><b>Manacost:</b> {{card.cost}}</li>

@@ -14,12 +14,28 @@
       max-height: 75% !important;
     }
 
-    button {
+    button.edit {
         background-color: #5d1516;
         color: #e9d4a9;
+        margin-right: 5px;
+    }
+
+    button.delete {
+        background-color: red;
+        color: white;
+    }
+
+    button.add {
+      background-color: #5d1516;
+      color: #e9d4a9;
+      justify-content:right;
     }
 
     .container-fluid.text-center.toptable  {
       background-image: url('../../../assets/images/undernavtop.png') !important;
       margin-bottom: -12px;
+    }
+
+    .search-field {
+      margin-right: 20px;
     }
