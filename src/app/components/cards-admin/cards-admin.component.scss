@@ -1,60 +1,78 @@
-    .container-fluid mat-grid-tile {
-      max-width: 600px;
-    }
-    
-    .container-fluid mat-grid-tile img {
-      height: 100%
-    }
-  
-    .container-fluid mat-form-field.search-field {
-      width: 300px;
-    }
-  
-    ::ng-deep .mat-select-panel {
-      max-height: 75% !important;
-    }
+.container-fluid mat-grid-tile {
+  max-width: 600px;
+}
 
-    button.edit {
-        background-color: #5d1516;
-        color: #e9d4a9;
-        margin-right: 5px;
-    }
+.container-fluid mat-grid-tile img {
+  height: 100%
+}
 
-    button.delete {
-        background-color: red;
-        color: white;
-        margin-right: 5px;
-    }
+.container-fluid mat-form-field.search-field {
+  width: 300px;
+}
 
-    button.add {
-      background-color: #5d1516;
-      color: #e9d4a9;
-      justify-content:right;
-    }
+::ng-deep .mat-select-panel {
+  max-height: 75% !important;
+}
 
-    button.confirm {
-      background-color: #008000;
-      color: white;
-      justify-content:right;
-    }
+button.edit {
+  background-color: #5d1516;
+  color: #e9d4a9;
+  margin-right: 5px;
+}
 
-    .container-fluid.text-center.toptable  {
-      background-image: url('../../../assets/images/undernavtop.png') !important;
-      margin-bottom: -12px;
-    }
+button.delete {
+  background-color: red;
+  color: white;
+  margin-right: 5px;
+}
 
-    .search-field {
-      margin-right: 20px;
-    }
+button.add {
+  background-color: #5d1516;
+  color: #e9d4a9;
+  justify-content: right;
+}
 
-    textarea {
-      color:black !important;
-      border: 1px solid #ced4da;
-      font-size: 1rem;
-      font-weight: 400;
-      padding: 0.375rem 0.75rem !important;
-    }
+button.confirm {
+  background-color: #008000;
+  color: white;
+  justify-content: right;
+}
 
-    mat-radio-button {
-      margin-right: 10px;
-    }
+.container-fluid.text-center.toptable {
+  background-image: url('../../../assets/images/undernavtop.png') !important;
+  margin-bottom: -12px;
+}
+
+.search-field {
+  margin-right: 20px;
+}
+
+textarea {
+  color: black !important;
+  border: 1px solid #ced4da;
+  font-size: 1rem;
+  font-weight: 400;
+  padding: 0.375rem 0.75rem !important;
+  background-color: #fff;
+}
+
+mat-radio-button {
+  margin-right: 10px;
+}
+
+.modal-header {
+  background-image: url('../../../assets/images/modal.png') !important;
+  color: #e9d4a9;
+  border-bottom: none;
+  object-fit: cover;
+  height: 75px;
+}
+
+.modal-body {
+  background-color: #e9d4a9;
+}
+
+.modal-footer {
+  background-color: #e9d4a9;
+  border-top: none;
+}
