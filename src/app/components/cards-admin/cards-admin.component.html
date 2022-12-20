@@ -24,7 +24,7 @@
                 <mat-grid-tile>
                     <img src="{{card.image}}">
                     <ul>
-                        <button mat-raised-button class="edit" (click)="updateCard(card)"> Edit name to test </button> <button mat-raised-button class="delete" (click)="deleteCard(card.id)"> Delete </button>
+                        <button mat-raised-button class="edit" (click)="updateCard(card)"> Edit </button> <button mat-raised-button class="delete" (click)="deleteCard(card.id)"> Delete </button>
                         <li><b>Name:</b> {{card.name}}</li>
                         <li><b>Class:</b> {{card.cardClass}}</li>
                         <li><b>Manacost:</b> {{card.cost}}</li>
@@ -81,7 +81,19 @@
         <div class="form-group">
             <label for="cardClass"> <strong> Cardclass </strong> </label>
             <div class="input-group">
-              <input id="class" class="form-control" name="cardClass" ngModel>
+              <select id="class" class="form-control" name="cardClass" ngModel>
+                <option value="" disabled selected hidden>--Choose a Class--</option>
+                <option value="Demon Hunter">Demon Hunter</option>
+                <option value="Druid">Druid</option>
+                <option value="Hunter">Hunter</option>
+                <option value="Mage">Mage</option>
+                <option value="Paladin">Paladin</option>
+                <option value="Priest">Priest</option>
+                <option value="Rogue">Rogue</option>
+                <option value="Shaman">Shaman</option>
+                <option value="Warlock">Warlock</option>
+                <option value="Warrior">Warrior</option>
+              </select>
             </div>
         </div>
         <div class="form-group">
@@ -106,7 +118,14 @@
         <div class="form-group">
             <label for="set"> <strong> Set </strong> </label>
             <div class="input-group">
-              <input id="set" class="form-control" name="set" ngModel>
+              <select id="set" class="form-control" name="set" ngModel>
+                <option value="" disabled selected hidden>--Choose a Set--</option>
+                <option value="Murder at Castle Nathria">Murder at Castle Nathria</option>
+                <option value="Voyage to the Sunken City">Voyage to the Sunken City</option>
+                <option value="United in Stormwind">United in Stormwind</option>
+                <option value="Forged in the Barrens">Forged in the Barrens</option>
+                <option value="Core">Core</option>
+              </select>
             </div>
         </div>
         <div class="form-group">
@@ -142,13 +161,36 @@
         <div class="form-group" id="tribeform"[hidden]="cardType.value != 'minion'">
             <label  for="tribe"> <strong> Tribe </strong> </label>
             <div class="input-group">
-              <input id="tribe" class="form-control" name="tribe" ngModel>
+              <select id="tribe" class="form-control" name="tribe" ngModel>
+                <option value="" disabled selected hidden>--Choose a Tribe--</option>
+                <option value="All">All</option>
+                <option value="Beast">Beast</option>
+                <option value="Demon">Demon</option>
+                <option value="Dragon">Dragon</option>
+                <option value="Elemental">Elemental</option>
+                <option value="Mech">Mech</option>
+                <option value="Murloc">Murloc</option>
+                <option value="Naga">Naga</option>
+                <option value="Pirate">Pirate</option>
+                <option value="Quilboar">Quilboar</option>
+                <option value="Totem">Totem</option>
+                <option value="None">None</option>
+              </select>
             </div>
         </div>
         <div class="form-group" id="spelltypeform" [hidden]="cardType.value != 'spell'">
             <label  for="spelltype"> <strong> Spelltype </strong> </label>
             <div class="input-group">
-              <input id="spelltype" class="form-control" name="spelltype" ngModel>
+              <select id="spelltype" class="form-control" name="spelltype" ngModel>
+                <option value="" disabled selected hidden>--Choose a Spell School--</option>
+                <option value="Arcane">Arcane</option>
+                <option value="Fel">Fel</option>
+                <option value="Fire">Fire</option>
+                <option value="Frost">Frost</option>
+                <option value="Nature">Nature</option>
+                <option value="Shadow">Shadow</option>
+                <option value="None">None</option>
+              </select>
             </div>
         </div>
         <div class="form-group" id="durabilityform" [hidden]="cardType.value != 'weapon'">

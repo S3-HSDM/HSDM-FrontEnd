@@ -252,7 +252,7 @@
             </tr>
         </thead>
         <tbody class="table">
-            <tr *ngFor="let card of cards$ | async">
+            <tr *ngFor="let card of cards$ | async" (click)="openDetails(contentDetails, card)">
                 <td *ngIf="(card.name?.toLowerCase()?.includes(search.value) || card.effect?.toLowerCase()?.includes(search.value) 
                 || card.heroPower?.toLowerCase()?.includes(search.value) || card.heroPowerEffect?.toLowerCase()?.includes(search.value) || search.value == '') 
                 && (card.cardClass == class.value || class.value == '') && (card.cost == manacost.value || manacost.value == '')"> {{card.cardClass}} </td>
