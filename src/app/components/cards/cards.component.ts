@@ -75,7 +75,8 @@ export class CardsComponent implements OnInit {
     { value: 'Naga', viewValue: 'Naga' },
     { value: 'Pirate', viewValue: 'Pirate' },
     { value: 'Quilboar', viewValue: 'Quilboar' },
-    { value: 'Totem', viewValue: 'Totem' }
+    { value: 'Totem', viewValue: 'Totem' },
+    { value: 'Undead', viewValue: 'Undead'}
   ];
 
   spellSchool: SpellSchool[] = [
@@ -218,6 +219,4 @@ export class CardsComponent implements OnInit {
     }
   }
   
-  
-
 }

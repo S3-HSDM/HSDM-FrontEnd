@@ -11,7 +11,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { AdminCardGuardService, CardAdminGuardService } from './services/admin-guard.service';
 import { CardsAdminComponent } from './components/cards-admin/cards-admin.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 // Angular Material imports
 import { MatGridListModule } from '@angular/material/grid-list';
@@ -37,6 +37,7 @@ import { MatRadioModule } from '@angular/material/radio';
     AppRoutingModule,
     BrowserAnimationsModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     MatGridListModule,
     MatButtonModule,

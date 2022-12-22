@@ -1,329 +1,395 @@
 <div class="container-fluid text-center toptable">
-    <p> <br/> </p>
+  <p> <br /> </p>
 </div>
 <div class="container-fluid" style="width:95%">
-    <h2>
-        <mat-form-field class="search-field">
-            <mat-label>Search</mat-label>
-            <input matInput type="text" #search="">
-            <button *ngIf="search.value" matSuffix mat-icon-button aria-label="Clear" (click)="search.value=''">
-                <mat-icon>close</mat-icon>
-            </button>
-        </mat-form-field>
-        <button mat-raised-button class="add" (click)="open(addContent)"> Add Card </button>
-    </h2>
+  <h2>
+    <mat-form-field class="search-field">
+      <mat-label>Search</mat-label>
+      <input matInput type="text" #search="">
+      <button *ngIf="search.value" matSuffix mat-icon-button aria-label="Clear" (click)="search.value=''">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+    <button mat-raised-button class="add" (click)="open(addContent)"> Add Card </button>
+  </h2>
 </div>
 
 <div class="container-fluid" style="width:95%" id="card-container">
-    <mat-grid-list cols="3" rowHeight="300px">
-        <div *ngFor="let card of cards$ | async">
-            <!-- Search all cards with the chosen input -->
-            <div
-                *ngIf="card.name?.toLowerCase()?.includes(search.value) || card.effect?.toLowerCase()?.includes(search.value) 
+  <mat-grid-list cols="3" rowHeight="300px">
+    <div *ngFor="let card of cards$ | async">
+      <!-- Search all cards with the chosen input -->
+      <div
+        *ngIf="card.name?.toLowerCase()?.includes(search.value) || card.effect?.toLowerCase()?.includes(search.value) 
             || card.heroPower?.toLowerCase()?.includes(search.value) || card.heroPowerEffect?.toLowerCase()?.includes(search.value) || search.value == ''">
-                <mat-grid-tile>
-                    <img src="{{card.image}}">
-                    <ul>
-                        <button mat-raised-button class="edit" (click)="updateCard(card)"> Edit </button> <button mat-raised-button class="delete" (click)="deleteCard(card.id)"> Delete </button>
-                        <li><b>Name:</b> {{card.name}}</li>
-                        <li><b>Class:</b> {{card.cardClass}}</li>
-                        <li><b>Manacost:</b> {{card.cost}}</li>
-                        <li><b>Rarity:</b> {{card.rarity}}</li>
-                        <li><b>Set:</b> {{card.set}}</li>
-                        <li><b>Effect:</b> {{card.effect}}</li>
-                        <li *ngIf="card.attack != null"><b>Attack:</b>
-                            {{card.attack}}
-                        </li>
-                        <li *ngIf="card.health != null"><b>Health:</b>
-                            {{card.health}}
-                        </li>
-                        <li *ngIf="card.tribe != null"><b>Tribe:</b>
-                            {{card.tribe}}
-                        </li>
-                        <li *ngIf="card.spellType!= null"><b>Spell School:</b>
-                            {{card.spellType}}</li>
-                        <li *ngIf="card.durability != null"><b>Durability:</b>
-                            {{card.durability}}</li>
-                        <li *ngIf="card.heroPower!= null"><b>Heropower:</b>
-                            {{card.heroPower}}</li>
-                        <li *ngIf="card.heroPowerEffect!= null"><b>Heropower
-                                Effect:</b>
-                            {{card.heroPowerEffect}}</li>
-                        <li *ngIf="card.heroPowerCost!= null"><b>Heropower
-                                Cost:</b>
-                            {{card.heroPowerCost}}</li>
-                    </ul>
-                </mat-grid-tile>
-            </div>
-        </div>
+        <mat-grid-tile>
+          <img src="{{card.image}}">
+          <ul>
+            <button mat-raised-button class="edit" (click)="openEdit(contentEdit, card)"> Edit </button> <button
+              mat-raised-button class="delete" (click)="deleteCard(card.id)"> Delete </button>
+            <li><b>Name:</b> {{card.name}}</li>
+            <li><b>Class:</b> {{card.cardClass}}</li>
+            <li><b>Manacost:</b> {{card.cost}}</li>
+            <li><b>Rarity:</b> {{card.rarity}}</li>
+            <li><b>Set:</b> {{card.set}}</li>
+            <li><b>Effect:</b> {{card.effect}}</li>
+            <li *ngIf="card.attack != null"><b>Attack:</b>
+              {{card.attack}}
+            </li>
+            <li *ngIf="card.health != null"><b>Health:</b>
+              {{card.health}}
+            </li>
+            <li *ngIf="card.tribe != null"><b>Tribe:</b>
+              {{card.tribe}}
+            </li>
+            <li *ngIf="card.spellType!= null"><b>Spell School:</b>
+              {{card.spellType}}</li>
+            <li *ngIf="card.durability != null"><b>Durability:</b>
+              {{card.durability}}</li>
+            <li *ngIf="card.heroPower!= null"><b>Heropower:</b>
+              {{card.heroPower}}</li>
+            <li *ngIf="card.heroPowerEffect!= null"><b>Heropower
+                Effect:</b>
+              {{card.heroPowerEffect}}</li>
+            <li *ngIf="card.heroPowerCost!= null"><b>Heropower
+                Cost:</b>
+              {{card.heroPowerCost}}</li>
+          </ul>
+        </mat-grid-tile>
+      </div>
+    </div>
 
-    </mat-grid-list>
+  </mat-grid-list>
 </div>
 
 <ng-template #addContent let-modal>
-    <div class="modal-header">
-      <h1 class="modal-title" id="modal-basic-title"><strong> Add card </strong></h1>
-    </div>
-    <div class="modal-body">
-        <form #form="ngForm" (ngSubmit)="onSubmit(form)" novalidate>
-        <mat-radio-group #cardType="matRadioGroup" aria-label="Select an option">
-            <mat-radio-button value="hero" checked="true">Herocard</mat-radio-button>
-            <mat-radio-button value="minion">Minioncard</mat-radio-button>
-            <mat-radio-button value="spell">Spellcard</mat-radio-button>
-            <mat-radio-button value="weapon">Weaponcard</mat-radio-button>
-          </mat-radio-group>
-          <div class="form-group">
-            <label for="name"> <strong> Cardname </strong> </label>
-            <div class="input-group">
-              <input id="name" name="name" class="form-control" ngModel>
-            </div>
+  <div class="modal-header">
+    <h1 class="modal-title" id="modal-basic-title"><strong> Add card </strong></h1>
+  </div>
+  <div class="modal-body">
+    <mat-radio-group #cardType="matRadioGroup" aria-label="Select an option">
+      <mat-radio-button value="hero" checked="true">Herocard</mat-radio-button>
+      <mat-radio-button value="minion">Minioncard</mat-radio-button>
+      <mat-radio-button value="spell">Spellcard</mat-radio-button>
+      <mat-radio-button value="weapon">Weaponcard</mat-radio-button>
+    </mat-radio-group>
+    <form #form="ngForm" (ngSubmit)="onSubmitAdd(cardType.value, form)" novalidate>
+      <div class="form-group">
+        <label for="name"> <strong> Cardname </strong> </label>
+        <div class="input-group">
+          <input id="name" name="name" class="form-control" ngModel>
         </div>
-        <div class="form-group">
-            <label for="cardClass"> <strong> Cardclass </strong> </label>
-            <div class="input-group">
-              <select id="class" class="form-control" name="cardClass" ngModel>
-                <option value="" disabled selected hidden>--Choose a Class--</option>
-                <option value="Demon Hunter">Demon Hunter</option>
-                <option value="Druid">Druid</option>
-                <option value="Hunter">Hunter</option>
-                <option value="Mage">Mage</option>
-                <option value="Paladin">Paladin</option>
-                <option value="Priest">Priest</option>
-                <option value="Rogue">Rogue</option>
-                <option value="Shaman">Shaman</option>
-                <option value="Warlock">Warlock</option>
-                <option value="Warrior">Warrior</option>
-              </select>
-            </div>
+      </div>
+      <div class="form-group">
+        <label for="cardClass"> <strong> Cardclass </strong> </label>
+        <div class="input-group">
+          <select id="class" class="form-control" name="cardClass" ngModel>
+            <option value="" disabled selected hidden>--Choose a Class--</option>
+            <option value="Demon Hunter">Demon Hunter</option>
+            <option value="Druid">Druid</option>
+            <option value="Hunter">Hunter</option>
+            <option value="Mage">Mage</option>
+            <option value="Paladin">Paladin</option>
+            <option value="Priest">Priest</option>
+            <option value="Rogue">Rogue</option>
+            <option value="Shaman">Shaman</option>
+            <option value="Warlock">Warlock</option>
+            <option value="Warrior">Warrior</option>
+            <option value="Neutral">Neutral</option>
+          </select>
         </div>
-        <div class="form-group">
-            <label  for="cost"> <strong> Cost </strong> </label>
-            <div class="input-group">
-              <input type="number" id="cost" class="form-control" name="cost" ngModel>
-            </div>
+      </div>
+      <div class="form-group">
+        <label for="cost"> <strong> Cost </strong> </label>
+        <div class="input-group">
+          <input type="number" id="cost" class="form-control" name="cost" ngModel>
         </div>
-        <div class="form-group">
-            <label for="rarity"> <strong> Rarity </strong> </label>
-            <div class="input-group">
-              <select id="rarity" class="form-control" name="rarity" ngModel>
-                <option value="" disabled selected hidden>--Choose a Rarity--</option>
-                <option value="Free">Free</option>
-                <option value="Common">Common</option>
-                <option value="Rare">Rare</option>
-                <option value="Epic">Epic</option>
-                <option value="Legendary">Legendary</option>
-              </select>
-            </div>
+      </div>
+      <div class="form-group">
+        <label for="rarity"> <strong> Rarity </strong> </label>
+        <div class="input-group">
+          <select id="rarity" class="form-control" name="rarity" ngModel>
+            <option value="" disabled selected hidden>--Choose a Rarity--</option>
+            <option value="Free">Free</option>
+            <option value="Common">Common</option>
+            <option value="Rare">Rare</option>
+            <option value="Epic">Epic</option>
+            <option value="Legendary">Legendary</option>
+          </select>
         </div>
-        <div class="form-group">
-            <label for="set"> <strong> Set </strong> </label>
-            <div class="input-group">
-              <select id="set" class="form-control" name="set" ngModel>
-                <option value="" disabled selected hidden>--Choose a Set--</option>
-                <option value="Murder at Castle Nathria">Murder at Castle Nathria</option>
-                <option value="Voyage to the Sunken City">Voyage to the Sunken City</option>
-                <option value="United in Stormwind">United in Stormwind</option>
-                <option value="Forged in the Barrens">Forged in the Barrens</option>
-                <option value="Core">Core</option>
-              </select>
-            </div>
+      </div>
+      <div class="form-group">
+        <label for="set"> <strong> Set </strong> </label>
+        <div class="input-group">
+          <select id="set" class="form-control" name="set" ngModel>
+            <option value="" disabled selected hidden>--Choose a Set--</option>
+            <option value="Murder at Castle Nathria">Murder at Castle Nathria</option>
+            <option value="Voyage to the Sunken City">Voyage to the Sunken City</option>
+            <option value="United in Stormwind">United in Stormwind</option>
+            <option value="Forged in the Barrens">Forged in the Barrens</option>
+            <option value="Core">Core</option>
+          </select>
         </div>
-        <div class="form-group">
-            <label for="effect"> <strong> Effect </strong> </label>
-            <div class="input-group">
-              <textarea matInput id="effect" class="form-control" name="effect" ngModel></textarea>
-            </div>
+      </div>
+      <div class="form-group">
+        <label for="effect"> <strong> Effect </strong> </label>
+        <div class="input-group">
+          <textarea matInput id="effect" class="form-control" name="effect" ngModel></textarea>
         </div>
-        <div class="form-group">
-            <label for="image"> <strong> Image </strong> </label>
-            <div class="input-group">
-              <textarea matInput id="image" class="form-control" name="image" ngModel></textarea>
-            </div>
+      </div>
+      <div class="form-group">
+        <label for="image"> <strong> Image </strong> </label>
+        <div class="input-group">
+          <textarea matInput id="image" class="form-control" name="image" ngModel></textarea>
         </div>
-        <div class="form-group" id="attackform" [hidden]="cardType.value != 'minion'">
-            <label for="attack"> <strong> Attack </strong> </label>
-            <div class="input-group">
-              <input type="number" id="minionattack" class="form-control" name="attack" ngModel>
-            </div>
+      </div>
+      <div class="form-group" id="attackform" [hidden]="cardType.value != 'minion'">
+        <label for="attack"> <strong> Attack </strong> </label>
+        <div class="input-group">
+          <input type="number" id="minionattack" class="form-control" name="attack" ngModel>
         </div>
-        <div class="form-group" id="attackform" [hidden]="cardType.value != 'weapon'">
-            <label  for="attack"> <strong> Attack </strong> </label>
-            <div class="input-group">
-              <input type="number" id="weaponattack" class="form-control" name="attack" ngModel>
-            </div>
+      </div>
+      <div class="form-group" id="attackform" [hidden]="cardType.value != 'weapon'">
+        <label for="attack"> <strong> Attack </strong> </label>
+        <div class="input-group">
+          <input type="number" id="weaponattack" class="form-control" name="attack" ngModel>
         </div>
-        <div class="form-group" id="healthform" [hidden]="cardType.value != 'minion'">
-            <label  for="health"> <strong> Health </strong> </label>
-            <div class="input-group">
-              <input type="number" id="health" class="form-control" name="health" ngModel>
-            </div>
+      </div>
+      <div class="form-group" id="healthform" [hidden]="cardType.value != 'minion'">
+        <label for="health"> <strong> Health </strong> </label>
+        <div class="input-group">
+          <input type="number" id="health" class="form-control" name="health" ngModel>
         </div>
-        <div class="form-group" id="tribeform"[hidden]="cardType.value != 'minion'">
-            <label  for="tribe"> <strong> Tribe </strong> </label>
-            <div class="input-group">
-              <select id="tribe" class="form-control" name="tribe" ngModel>
-                <option value="" disabled selected hidden>--Choose a Tribe--</option>
-                <option value="All">All</option>
-                <option value="Beast">Beast</option>
-                <option value="Demon">Demon</option>
-                <option value="Dragon">Dragon</option>
-                <option value="Elemental">Elemental</option>
-                <option value="Mech">Mech</option>
-                <option value="Murloc">Murloc</option>
-                <option value="Naga">Naga</option>
-                <option value="Pirate">Pirate</option>
-                <option value="Quilboar">Quilboar</option>
-                <option value="Totem">Totem</option>
-                <option value="None">None</option>
-              </select>
-            </div>
+      </div>
+      <div class="form-group" id="tribeform" [hidden]="cardType.value != 'minion'">
+        <label for="tribe"> <strong> Tribe </strong> </label>
+        <div class="input-group">
+          <select id="tribe" class="form-control" name="tribe" ngModel>
+            <option value="" disabled selected hidden>--Choose a Tribe--</option>
+            <option value="All">All</option>
+            <option value="Beast">Beast</option>
+            <option value="Demon">Demon</option>
+            <option value="Dragon">Dragon</option>
+            <option value="Elemental">Elemental</option>
+            <option value="Mech">Mech</option>
+            <option value="Murloc">Murloc</option>
+            <option value="Naga">Naga</option>
+            <option value="Pirate">Pirate</option>
+            <option value="Quilboar">Quilboar</option>
+            <option value="Totem">Totem</option>
+            <option value="Undead">Undead</option>
+            <option value="None">None</option>
+          </select>
         </div>
-        <div class="form-group" id="spelltypeform" [hidden]="cardType.value != 'spell'">
-            <label  for="spelltype"> <strong> Spelltype </strong> </label>
-            <div class="input-group">
-              <select id="spelltype" class="form-control" name="spelltype" ngModel>
-                <option value="" disabled selected hidden>--Choose a Spell School--</option>
-                <option value="Arcane">Arcane</option>
-                <option value="Fel">Fel</option>
-                <option value="Fire">Fire</option>
-                <option value="Frost">Frost</option>
-                <option value="Nature">Nature</option>
-                <option value="Shadow">Shadow</option>
-                <option value="None">None</option>
-              </select>
-            </div>
+      </div>
+      <div class="form-group" id="spelltypeform" [hidden]="cardType.value != 'spell'">
+        <label for="spellType"> <strong> Spelltype </strong> </label>
+        <div class="input-group">
+          <select id="spellType" class="form-control" name="spellType" ngModel>
+            <option value="" disabled selected hidden>--Choose a Spell School--</option>
+            <option value="Arcane">Arcane</option>
+            <option value="Fel">Fel</option>
+            <option value="Fire">Fire</option>
+            <option value="Frost">Frost</option>
+            <option value="Holy">Holy</option>
+            <option value="Nature">Nature</option>
+            <option value="Shadow">Shadow</option>
+            <option value="None">None</option>
+          </select>
         </div>
-        <div class="form-group" id="durabilityform" [hidden]="cardType.value != 'weapon'">
-            <label  for="durability"> <strong> Durability </strong> </label>
-            <div class="input-group">
-              <input type="number" id="durability" class="form-control" name="durability" ngModel>
-            </div>
+      </div>
+      <div class="form-group" id="durabilityform" [hidden]="cardType.value != 'weapon'">
+        <label for="durability"> <strong> Durability </strong> </label>
+        <div class="input-group">
+          <input type="number" id="durability" class="form-control" name="durability" ngModel>
         </div>
-        <div class="form-group" id="hpform" [hidden]="cardType.value != 'hero'">
-            <label  for="heroPower"> <strong> Heropower </strong> </label>
-            <div class="input-group">
-              <input id="hp" class="form-control" name="heroPower" ngModel>
-            </div>
+      </div>
+      <div class="form-group" id="hpform" [hidden]="cardType.value != 'hero'">
+        <label for="heroPower"> <strong> Heropower </strong> </label>
+        <div class="input-group">
+          <input id="hp" class="form-control" name="heroPower" ngModel>
         </div>
-        <div class="form-group" id="hpeffectform" [hidden]="cardType.value != 'hero'">
-            <label  for="heroPowerEffect"> <strong> Heropowereffect </strong> </label>
-            <div class="input-group">
-              <textarea id="hpeffect" class="form-control" name="heroPowerEffect" ngModel></textarea>
-            </div>
+      </div>
+      <div class="form-group" id="hpeffectform" [hidden]="cardType.value != 'hero'">
+        <label for="heroPowerEffect"> <strong> Heropowereffect </strong> </label>
+        <div class="input-group">
+          <textarea id="hpeffect" class="form-control" name="heroPowerEffect" ngModel></textarea>
         </div>
-        <div class="form-group" id="hpcostform" [hidden]="cardType.value != 'hero'">
-            <label  for="heroPowerCost"> <strong> Heropowercost </strong> </label>
-            <div class="input-group">
-              <input type="number" id="hpcost" class="form-control" name="heroPowerCost" ngModel>
-            </div>
+      </div>
+      <div class="form-group" id="hpcostform" [hidden]="cardType.value != 'hero'">
+        <label for="heroPowerCost"> <strong> Heropowercost </strong> </label>
+        <div class="input-group">
+          <input type="number" id="hpcost" class="form-control" name="heroPowerCost" ngModel>
         </div>
-      </form>
-    </div>
-    <div class="modal-footer">
-      <button mat-raised-button class="delete" type="button" aria-label="Close" (click)="modal.dismiss('Cross click')" >Cancel</button>
-      <button mat-raised-button class="confirm" data-dismiss="modal" (click)="onSubmit(form)" >Add card</button>
-    </div>
-  </ng-template>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button mat-raised-button class="delete" type="button" aria-label="Close"
+      (click)="modal.dismiss('Cross click')">Cancel</button>
+    <button mat-raised-button class="confirm" data-dismiss="modal" (click)="onSubmitAdd(cardType.value, form)">Add
+      card</button>
+  </div>
+</ng-template>
 
-  <ng-template #editContent let-modal>
-    <div class="modal-header">
-      <h1 class="modal-title" id="modal-basic-title"><strong> Edit card </strong></h1>
-    </div>
-    <div class="modal-body">
-      <form>
-        <div class="form-group">
-            <label> <strong> Cardname </strong> </label>
-            <div class="input-group">
-              <input id="name" class="form-control" >
-            </div>
+<ng-template #contentEdit let-modal>
+  <div class="modal-header">
+    <h1 class="modal-title" id="modal-basic-title"><strong> Add card </strong></h1>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="editForm" novalidate>
+      <div class="form-group">
+        <label for="id"> <strong> ID </strong> </label>
+        <div class="input-group">
+          <input formControlName="id" class="form-control" readonly>
         </div>
-        <div class="form-group">
-            <label> <strong> Cardclass </strong> </label>
-            <div class="input-group">
-              <input id="class" class="form-control" >
-            </div>
+      </div>
+      <div class="form-group">
+        <label for="name"> <strong> Cardname </strong> </label>
+        <div class="input-group">
+          <input formControlName="name" class="form-control">
         </div>
-        <div class="form-group">
-            <label> <strong> Cost </strong> </label>
-            <div class="input-group">
-              <input id="cost" class="form-control" >
-            </div>
+      </div>
+      <div class="form-group">
+        <label for="cardClass"> <strong> Cardclass </strong> </label>
+        <div class="input-group">
+          <select class="form-control" formControlName="cardClass">
+            <option value="" disabled selected hidden>--Choose a Class--</option>
+            <option value="Demon Hunter">Demon Hunter</option>
+            <option value="Druid">Druid</option>
+            <option value="Hunter">Hunter</option>
+            <option value="Mage">Mage</option>
+            <option value="Paladin">Paladin</option>
+            <option value="Priest">Priest</option>
+            <option value="Rogue">Rogue</option>
+            <option value="Shaman">Shaman</option>
+            <option value="Warlock">Warlock</option>
+            <option value="Warrior">Warrior</option>
+            <option value="Neutral">Neutral</option>
+          </select>
         </div>
-        <div class="form-group">
-            <label> <strong> Rarity </strong> </label>
-            <div class="input-group">
-              <input id="rarity" class="form-control" >
-            </div>
+      </div>
+      <div class="form-group">
+        <label for="cost"> <strong> Cost </strong> </label>
+        <div class="input-group">
+          <input type="number" class="form-control" formControlName="cost">
         </div>
-        <div class="form-group">
-            <label> <strong> Set </strong> </label>
-            <div class="input-group">
-              <input id="set" class="form-control" >
-            </div>
+      </div>
+      <div class="form-group">
+        <label for="rarity"> <strong> Rarity </strong> </label>
+        <div class="input-group">
+          <select class="form-control" formControlName="rarity">
+            <option value="" disabled selected hidden>--Choose a Rarity--</option>
+            <option value="Free">Free</option>
+            <option value="Common">Common</option>
+            <option value="Rare">Rare</option>
+            <option value="Epic">Epic</option>
+            <option value="Legendary">Legendary</option>
+          </select>
         </div>
-        <div class="form-group">
-            <label> <strong> Effect </strong> </label>
-            <div class="input-group">
-              <textarea matInput id="effect" class="form-control" ></textarea>
-            </div>
+      </div>
+      <div class="form-group">
+        <label for="set"> <strong> Set </strong> </label>
+        <div class="input-group">
+          <select class="form-control" formControlName="set">
+            <option value="" disabled selected hidden>--Choose a Set--</option>
+            <option value="Murder at Castle Nathria">Murder at Castle Nathria</option>
+            <option value="Voyage to the Sunken City">Voyage to the Sunken City</option>
+            <option value="United in Stormwind">United in Stormwind</option>
+            <option value="Forged in the Barrens">Forged in the Barrens</option>
+            <option value="Core">Core</option>
+          </select>
         </div>
-        <div class="form-group">
-            <label> <strong> Effect </strong> </label>
-            <div class="input-group">
-              <textarea matInput id="effect" class="form-control" ></textarea>
-            </div>
+      </div>
+      <div class="form-group">
+        <label for="effect"> <strong> Effect </strong> </label>
+        <div class="input-group">
+          <textarea matInput class="form-control" formControlName="effect"></textarea>
         </div>
-        <div class="form-group" id="attackform">
-            <label> <strong> Attack </strong> </label>
-            <div class="input-group">
-              <input id="attack" class="form-control" >
-            </div>
+      </div>
+      <div class="form-group">
+        <label for="image"> <strong> Image </strong> </label>
+        <div class="input-group">
+          <textarea matInput class="form-control" formControlName="image"></textarea>
         </div>
-        <div class="form-group" id="healthform">
-            <label> <strong> Health </strong> </label>
-            <div class="input-group">
-              <input id="health" class="form-control" >
-            </div>
+      </div>
+      <div class="form-group" id="editattackform">
+        <label for="attack"> <strong> Attack </strong> </label>
+        <div class="input-group">
+          <input type="number" class="form-control" formControlName="attack">
         </div>
-        <div class="form-group" id="tribeform">
-            <label> <strong> Tribe </strong> </label>
-            <div class="input-group">
-              <input id="tribe" class="form-control" >
-            </div>
+      </div>
+      <div class="form-group" id="edithealthform">
+        <label for="health"> <strong> Health </strong> </label>
+        <div class="input-group">
+          <input type="number" class="form-control" formControlName="health">
         </div>
-        <div class="form-group" id="spelltypeform">
-            <label> <strong> Spelltype </strong> </label>
-            <div class="input-group">
-              <input id="spelltype" class="form-control" >
-            </div>
+      </div>
+      <div class="form-group" id="edittribeform">
+        <label for="tribe"> <strong> Tribe </strong> </label>
+        <div class="input-group">
+          <select class="form-control" formControlName="tribe">
+            <option value="" disabled selected hidden>--Choose a Tribe--</option>
+            <option value="All">All</option>
+            <option value="Beast">Beast</option>
+            <option value="Demon">Demon</option>
+            <option value="Dragon">Dragon</option>
+            <option value="Elemental">Elemental</option>
+            <option value="Mech">Mech</option>
+            <option value="Murloc">Murloc</option>
+            <option value="Naga">Naga</option>
+            <option value="Pirate">Pirate</option>
+            <option value="Quilboar">Quilboar</option>
+            <option value="Totem">Totem</option>
+            <option value="Undead">Undead</option>
+            <option value="None">None</option>
+          </select>
         </div>
-        <div class="form-group" id="durabilityform">
-            <label> <strong> Durability </strong> </label>
-            <div class="input-group">
-              <input id="durability" class="form-control" >
-            </div>
+      </div>
+      <div class="form-group" id="editspelltypeform">
+        <label for="spellType"> <strong> Spelltype </strong> </label>
+        <div class="input-group">
+          <select class="form-control" formControlName="spellType">
+            <option value="" disabled selected hidden>--Choose a Spell School--</option>
+            <option value="Arcane">Arcane</option>
+            <option value="Fel">Fel</option>
+            <option value="Fire">Fire</option>
+            <option value="Frost">Frost</option>
+            <option value="Holy">Holy</option>
+            <option value="Nature">Nature</option>
+            <option value="Shadow">Shadow</option>
+            <option value="None">None</option>
+          </select>
         </div>
-        <div class="form-group" id="hpform">
-            <label> <strong> Heropower </strong> </label>
-            <div class="input-group">
-              <input id="hp" class="form-control" >
-            </div>
+      </div>
+      <div class="form-group" id="editdurabilityform">
+        <label for="durability"> <strong> Durability </strong> </label>
+        <div class="input-group">
+          <input type="number" class="form-control" formControlName="durability">
         </div>
-        <div class="form-group" id="hpeffectform">
-            <label> <strong> Heropowereffect </strong> </label>
-            <div class="input-group">
-              <textarea id="hpeffect" class="form-control" ></textarea>
-            </div>
+      </div>
+      <div class="form-group" id="edithpform">
+        <label for="heroPower"> <strong> Heropower </strong> </label>
+        <div class="input-group">
+          <input class="form-control" formControlName="heroPower">
         </div>
-        <div class="form-group" id="hpcostform">
-            <label> <strong> Heropowercost </strong> </label>
-            <div class="input-group">
-              <input id="hpcost" class="form-control" >
-            </div>
+      </div>
+      <div class="form-group" id="edithpeffectform">
+        <label for="heroPowerEffect"> <strong> Heropowereffect </strong> </label>
+        <div class="input-group">
+          <textarea class="form-control" formControlName="heroPowerEffect"></textarea>
         </div>
-      </form>
-    </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-outline-dark" aria-label="Close" (click)="modal.dismiss('Cross click')" >Close</button>
-    </div>
-  </ng-template>
+      </div>
+      <div class="form-group" id="edithpcostform">
+        <label for="heroPowerCost"> <strong> Heropowercost </strong> </label>
+        <div class="input-group">
+          <input type="number" class="form-control" formControlName="heroPowerCost">
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button mat-raised-button class="delete" type="button" aria-label="Close"
+      (click)="modal.dismiss('Cross click')">Cancel</button>
+    <button mat-raised-button class="confirm" data-dismiss="modal" (click)="onSubmitEdit(editForm.value)">Edit</button>
+  </div>
+</ng-template>

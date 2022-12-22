@@ -20,7 +20,7 @@ export class CardsService {
     return this.http.get<Card[]>(this.uri);
   }
 
-  public addCard(card: Card): Observable<Card> {
+  public addCard(cardType: String, card: Card): Observable<Card> {
     let addCardUri;
     let cardSet;
       if(card.set.indexOf('&') != null){
@@ -28,13 +28,14 @@ export class CardsService {
       } else {
         cardSet = card.set;
       }
-    if(card.heroPower != ""){
+    if(cardType == "hero"){
       addCardUri = this.uri + "?cardClass=" + card.cardClass + "&name=" + card.name + "&image=" + card.image + "&cost=" + card.cost + "&rarity=" + card.rarity + "&set=" + cardSet + "&effect=" + card.effect + "&heroPower=" + card.heroPower + "&heroPowerEffect=" + card.heroPowerEffect + "&heroPowerCost=" + card.heroPowerCost
-    }else if(card.health.toString() != ""){
+    }else if(cardType == "minion"){
       addCardUri = this.uri + "?cardClass=" + card.cardClass + "&name=" + card.name + "&image=" + card.image + "&cost=" + card.cost + "&rarity=" + card.rarity + "&set=" + cardSet + "&effect=" + card.effect + "&attack=" + card.attack + "&health=" + card.health + "&tribe=" + card.tribe
-    }else if(card.spellType != ""){
+    }else if(cardType == "spell"){
+      console.log(card.spellType)
       addCardUri = this.uri + "?cardClass=" + card.cardClass + "&name=" + card.name + "&image=" + card.image + "&cost=" + card.cost + "&rarity=" + card.rarity + "&set=" + cardSet + "&effect=" + card.effect + "&spellType=" + card.spellType
-    }else if(card.durability.toString() != ""){
+    }else if(cardType == "weapon"){
       addCardUri = this.uri + "?cardClass=" + card.cardClass + "&name=" + card.name + "&image=" + card.image + "&cost=" + card.cost + "&rarity=" + card.rarity + "&set=" + cardSet + "&effect=" + card.effect + "&attack=" + card.attack + "&durability=" + card.durability
     }
     this.http.post<Card>(addCardUri, card).subscribe(card => this.cards.push(card));
@@ -43,24 +44,22 @@ export class CardsService {
 
   public updateCard(card: Card): Observable<Card> {
     let editCardUri;
-    let cardName = "Test"
     let cardSet;
       if(card.set.indexOf('&') != null){
         cardSet = card.set.replace('&','%26')
       } else {
         cardSet = card.set;
       }
-    if(card.heroPower != ""){
-      editCardUri = this.uri + '/' + card.id + "?cardClass=" + card.cardClass + "&name=" + cardName + "&image=" + card.image + "&cost=" + card.cost + "&rarity=" + card.rarity + "&set=" + cardSet + "&effect=" + card.effect + "&heroPower=" + card.heroPower + "&heroPowerEffect=" + card.heroPowerEffect + "&heroPowerCost=" + card.heroPowerCost
-    }else if(card.health.toString() != ""){
-      editCardUri = this.uri + '/' + card.id + "?cardClass=" + card.cardClass + "&name=" + cardName + "&image=" + card.image + "&cost=" + card.cost + "&rarity=" + card.rarity + "&set=" + cardSet + "&effect=" + card.effect + "&attack=" + card.attack + "&health=" + card.health + "&tribe=" + card.tribe
-    }else if(card.spellType != ""){
-      editCardUri = this.uri + '/' + card.id + "?cardClass=" + card.cardClass + "&name=" + cardName + "&image=" + card.image + "&cost=" + card.cost + "&rarity=" + card.rarity + "&set=" + cardSet + "&effect=" + card.effect + "&spellType=" + card.spellType
-    }else if(card.durability.toString() != ""){
-      editCardUri = this.uri + '/' + card.id + "?cardClass=" + card.cardClass + "&name=" + cardName + "&image=" + card.image + "&cost=" + card.cost + "&rarity=" + card.rarity + "&set=" + cardSet + "&effect=" + card.effect + "&attack=" + card.attack + "&durability=" + card.durability
+    if(card.heroPower != null){
+      editCardUri = this.uri + '/' + card.id + "?cardClass=" + card.cardClass + "&name=" + card.name + "&image=" + card.image + "&cost=" + card.cost + "&rarity=" + card.rarity + "&set=" + cardSet + "&effect=" + card.effect + "&heroPower=" + card.heroPower + "&heroPowerEffect=" + card.heroPowerEffect + "&heroPowerCost=" + card.heroPowerCost
+    }else if(card.health != null){
+      editCardUri = this.uri + '/' + card.id + "?cardClass=" + card.cardClass + "&name=" + card.name + "&image=" + card.image + "&cost=" + card.cost + "&rarity=" + card.rarity + "&set=" + cardSet + "&effect=" + card.effect + "&attack=" + card.attack + "&health=" + card.health + "&tribe=" + card.tribe
+    }else if(card.spellType != null){
+      editCardUri = this.uri + '/' + card.id + "?cardClass=" + card.cardClass + "&name=" + card.name + "&image=" + card.image + "&cost=" + card.cost + "&rarity=" + card.rarity + "&set=" + cardSet + "&effect=" + card.effect + "&spellType=" + card.spellType
+    }else if(card.durability != null){
+      editCardUri = this.uri + '/' + card.id + "?cardClass=" + card.cardClass + "&name=" + card.name + "&image=" + card.image + "&cost=" + card.cost + "&rarity=" + card.rarity + "&set=" + cardSet + "&effect=" + card.effect + "&attack=" + card.attack + "&durability=" + card.durability
     }
-    console.log(editCardUri)
-    this.http.put<Card>(editCardUri , card).subscribe(card => this.cards.push(card));
+    this.http.put<Card>(editCardUri, card).subscribe(card => this.cards.push(card));
     return null
   }
 
