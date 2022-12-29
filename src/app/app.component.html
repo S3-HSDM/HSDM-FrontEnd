@@ -15,9 +15,12 @@
           </li>
         </ul>
       </div>
-      <mat-button-toggle-group #admin="matButtonToggleGroup" name="admin" aria-label="User or Admin">
-        <mat-button-toggle aria-label="User View" [checked]="getAdminStatus() == 'false'" (click)="changeAdminStatus('false')"> <span class="material-symbols-outlined">person</span> </mat-button-toggle>
-        <mat-button-toggle value="true" aria-label="Admin view" [checked]="getAdminStatus() == 'true'" (click)="changeAdminStatus('true')"> <span class="material-symbols-outlined">admin_panel_settings</span> </mat-button-toggle>
+      <button mat-raised-button id="qsLoginBtn" class="edit" (click)="loginWithRedirect()" *ngIf="(auth.isAuthenticated$ | async) === false"> Log in </button>
+      <a class="userInfo" *ngIf="auth.user$ | async as user"> Welcome {{user.nickname}}</a>
+      <button mat-raised-button class="edit" id="qsLogoutBtn" (click)="logout()" *ngIf="auth.isAuthenticated$ | async"> Log out </button>
+      <mat-button-toggle-group #admin="matButtonToggleGroup" name="admin" aria-label="User or Admin" *ngIf="auth.user$ | async as user">
+        <mat-button-toggle *ngIf="user.email == 'admin@hsdm.com'" aria-label="User View" [checked]="getAdminStatus() == 'false'" (click)="changeAdminStatus('false')"> <span class="material-symbols-outlined">person</span> </mat-button-toggle>
+        <mat-button-toggle *ngIf="user.email == 'admin@hsdm.com'" value="true" aria-label="Admin view" [checked]="getAdminStatus() == 'true'" (click)="changeAdminStatus('true')"> <span class="material-symbols-outlined">admin_panel_settings</span> </mat-button-toggle>
       </mat-button-toggle-group>
     </div>
   </nav>

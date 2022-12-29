@@ -12,17 +12,22 @@
 
 nav {
     background-image: url('../assets/images/nav.png');
+    padding-top: 20px;
 }
 
 nav a{
     color: #e9d4a9 !important;
 }
 
+nav a.userInfo {
+  margin-right: 10px;
+  text-decoration: none;
+}
+
 ::ng-deep .mat-button-toggle{
     background-image: url('../assets/images/background.jpg');
     border-left: none !important;
     color: #7f5a35;
-    border-top: solid 3px #1e1a1c;
   }
 
   ::ng-deep .mat-button-toggle-checked{
@@ -32,6 +37,11 @@ nav a{
   }
 
   ::ng-deep .mat-button-toggle-group-appearance-standard{
-    border-top: solid 2px #e9d4a9 !important;
     border: none;
+  }
+
+  button.edit {
+    background-color: #5d1516;
+    color: #e9d4a9;
+    margin-right: 5px;
   }

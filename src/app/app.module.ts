@@ -12,6 +12,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { AdminCardGuardService, CardAdminGuardService } from './services/admin-guard.service';
 import { CardsAdminComponent } from './components/cards-admin/cards-admin.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AuthModule } from '@auth0/auth0-angular';
 
 // Angular Material imports
 import { MatGridListModule } from '@angular/material/grid-list';
@@ -47,7 +48,11 @@ import { MatRadioModule } from '@angular/material/radio';
     MatSelectModule,
     MatExpansionModule,
     MatRadioModule,
-    NgbModule
+    NgbModule,
+    AuthModule.forRoot({
+      domain: 'dev-ahnspy3md2kbd5ya.eu.auth0.com',
+      clientId: 'DJo4HHEVl4g5S5bMRJOp1y7i1ezS69ig'
+    }),
   ],
   providers: [AdminCardGuardService, CardAdminGuardService],
   bootstrap: [AppComponent]
