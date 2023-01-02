@@ -2,12 +2,19 @@ import { TestBed } from '@angular/core/testing';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
+import { AuthModule } from '@auth0/auth0-angular';
+
 
 describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule, MatButtonToggleModule
+        RouterTestingModule, 
+        MatButtonToggleModule,
+        AuthModule.forRoot({
+          domain: 'dev-ahnspy3md2kbd5ya.eu.auth0.com',
+          clientId: 'DJo4HHEVl4g5S5bMRJOp1y7i1ezS69ig'
+        }),
       ],
       declarations: [
         AppComponent
