@@ -10,14 +10,14 @@
             </mat-expansion-panel-header>
             <h3>
                 <mat-form-field appearance="fill" class="search-field-extra-filter">
-                    <mat-label> <img src="assets/images/attack.png" style="height:25px"> Attack </mat-label>
+                    <mat-label> <img src="assets/images/attack.png" style="height:25px" alt="Attack"> Attack </mat-label>
                     <input matInput type="text" #attack="">
                     <button *ngIf="attack.value" matSuffix mat-icon-button aria-label="Clear" (click)="attack.value=''">
                         <mat-icon>close</mat-icon>
                     </button>
                 </mat-form-field>
                 <mat-form-field appearance="fill" class="search-field-extra-filter">
-                    <mat-label> <img src="assets/images/health.png" style="height:25px"> Health </mat-label>
+                    <mat-label> <img src="assets/images/health.png" style="height:25px" alt="Health"> Health </mat-label>
                     <input matInput type="text" #health="">
                     <button *ngIf="health.value" matSuffix mat-icon-button aria-label="Clear" (click)="health.value=''">
                         <mat-icon>close</mat-icon>
@@ -69,16 +69,16 @@
                 </mat-form-field>
                 <mat-button-toggle-group #mode="matButtonToggleGroup" name="mode" aria-label="Class">
                     <mat-button-toggle value="" aria-label="All Classes" checked="true">
-                        <button class="icon-button"> <img class="iconMode" src="assets/images/all.png" /> </button>
+                        <button class="icon-button"> <img class="iconMode" src="assets/images/all.png" alt="All cards" /> </button>
                     </mat-button-toggle>
                     <mat-button-toggle value="standard" aria-label="All Classes">
-                        <button class="icon-button"> <img class="iconMode" src="assets/images/standard.png" /> </button>
+                        <button class="icon-button"> <img class="iconMode" src="assets/images/standard.png" alt="Standard cards" /> </button>
                     </mat-button-toggle>
                     <mat-button-toggle value="wild" aria-label="All Classes">
-                        <button class="icon-button"> <img class="iconMode" src="assets/images/wild.png" /> </button>
+                        <button class="icon-button"> <img class="iconMode" src="assets/images/wild.png" alt="Wild cards" /> </button>
                     </mat-button-toggle>
                     <mat-button-toggle value="classic" aria-label="All Classes">
-                        <button class="icon-button"> <img class="iconMode" src="assets/images/classic.png" /> </button>
+                        <button class="icon-button"> <img class="iconMode" src="assets/images/classic.png" alt="Classic cards" /> </button>
                     </mat-button-toggle>
                 </mat-button-toggle-group>
             </h3>
@@ -94,47 +94,47 @@
         Class:
         <mat-button-toggle-group #class="matButtonToggleGroup" name="class" aria-label="Class">
             <mat-button-toggle value="" aria-label="All Classes" checked="true">
-                <button class="icon-button"> <img class="icon" src="assets/images/all.png" /> </button>
+                <button class="icon-button"> <img class="icon" src="assets/images/all.png" alt="All classes" /> </button>
             </mat-button-toggle>
             <mat-button-toggle value="Death Knight" aria-label="Death Knight Class">
-                <button class="icon-button"> <img class="icon" src="assets/images/dk.png" /> </button>
+                <button class="icon-button"> <img class="icon" src="assets/images/dk.png" alt="Death Knight" /> </button>
             </mat-button-toggle>
             <mat-button-toggle value="Demon Hunter" aria-label="Demon Hunter Class">
-                <button class="icon-button"> <img class="icon" src="assets/images/dh.png" /> </button>
+                <button class="icon-button"> <img class="icon" src="assets/images/dh.png" alt="Demon Hunter" /> </button>
             </mat-button-toggle>
             <mat-button-toggle value="Druid" aria-label="Druid Class">
-                <button class="icon-button"> <img class="icon" src="assets/images/druid.png" /> </button>
+                <button class="icon-button"> <img class="icon" src="assets/images/druid.png" alt="Druid" /> </button>
             </mat-button-toggle>
             <mat-button-toggle value="Hunter" aria-label="Hunter Class">
-                <button class="icon-button"> <img class="icon" src="assets/images/hunter.png" /> </button>
+                <button class="icon-button"> <img class="icon" src="assets/images/hunter.png" alt="Hunter" /> </button>
             </mat-button-toggle>
             <mat-button-toggle value="Mage" aria-label="Mage Class">
-                <button class="icon-button"> <img class="icon" src="assets/images/mage.png" /> </button>
+                <button class="icon-button"> <img class="icon" src="assets/images/mage.png" alt="Mage" /> </button>
             </mat-button-toggle>
             <mat-button-toggle value="Paladin" aria-label="Paladin Class">
-                <button class="icon-button"> <img class="icon" src="assets/images/paladin.png" /> </button>
+                <button class="icon-button"> <img class="icon" src="assets/images/paladin.png" alt="Paladin" /> </button>
             </mat-button-toggle>
             <mat-button-toggle value="Priest" aria-label="Priest Class">
-                <button class="icon-button"> <img class="icon" src="assets/images/priest.png" /> </button>
+                <button class="icon-button"> <img class="icon" src="assets/images/priest.png" alt="Priest" /> </button>
             </mat-button-toggle>
             <mat-button-toggle value="Rogue" aria-label="Rogue Class">
-                <button class="icon-button"> <img class="icon" src="assets/images/rogue.png" /> </button>
+                <button class="icon-button"> <img class="icon" src="assets/images/rogue.png" alt="Rogue" /> </button>
             </mat-button-toggle>
             <mat-button-toggle value="Shaman" aria-label="Shaman Class">
-                <button class="icon-button"> <img class="icon" src="assets/images/shaman.png" /> </button>
+                <button class="icon-button"> <img class="icon" src="assets/images/shaman.png" alt="Shaman" /> </button>
             </mat-button-toggle>
             <mat-button-toggle value="Warlock" aria-label="Warlock Class">
-                <button class="icon-button"> <img class="icon" src="assets/images/warlock.png" /> </button>
+                <button class="icon-button"> <img class="icon" src="assets/images/warlock.png" alt="Warlock" /> </button>
             </mat-button-toggle>
             <mat-button-toggle value="Warrior" aria-label="Warrior Class">
-                <button class="icon-button"> <img class="icon" src="assets/images/warrior.png" /> </button>
+                <button class="icon-button"> <img class="icon" src="assets/images/warrior.png" alt="Warrior" /> </button>
             </mat-button-toggle>
             <mat-button-toggle value="Neutral" aria-label="Neutral Class">
-                <button class="icon-button"> <img class="icon" src="assets/images/neutral.png" /> </button>
+                <button class="icon-button"> <img class="icon" src="assets/images/neutral.png" alt="Neutral" /> </button>
             </mat-button-toggle>
         </mat-button-toggle-group>
 
-        <img src="assets/images/manacost.png"> :
+        <img src="assets/images/manacost.png" alt="Manacost"> :
         <mat-button-toggle-group #manacost="matButtonToggleGroup" name="manacost" aria-label="Manacost">
             <mat-button-toggle value="" aria-label="All Manacost" checked="true"> All </mat-button-toggle>
             <mat-button-toggle value=0 aria-label="Manacost 0"> 0 </mat-button-toggle>
@@ -196,36 +196,7 @@
                                                         || (mode.value == 'wild' && (card.set != 'Murder at Castle Nathria' && card.set != 'Voyage to the Sunken City' && card.set != 'Fractured in Alterac Valley' && card.set != 'United in Stormwind' && card.set != 'Forged in the Barrens' && card.set != 'Core')) 
                                                         || mode.value == ''">
                                                         <mat-grid-tile>
-                                                            <img src="{{card.image}}" (click)="openDetails(contentDetails, card)">
-                                                            <!-- <ul>
-                                                                <li><b>Name:</b> {{card.name}}</li>
-                                                                <li><b>Class:</b> {{card.cardClass}}</li>
-                                                                <li><b>Manacost:</b> {{card.cost}}</li>
-                                                                <li><b>Rarity:</b> {{card.rarity}}</li>
-                                                                <li><b>Set:</b> {{card.set}}</li>
-                                                                <li><b>Effect:</b> {{card.effect}}</li>
-                                                                <li *ngIf="card.attack != null"><b>Attack:</b>
-                                                                    {{card.attack}}
-                                                                </li>
-                                                                <li *ngIf="card.health != null"><b>Health:</b>
-                                                                    {{card.health}}
-                                                                </li>
-                                                                <li *ngIf="card.tribe != null"><b>Tribe:</b>
-                                                                    {{card.tribe}}
-                                                                </li>
-                                                                <li *ngIf="card.spellType!= null"><b>Spell School:</b>
-                                                                    {{card.spellType}}</li>
-                                                                <li *ngIf="card.durability != null"><b>Durability:</b>
-                                                                    {{card.durability}}</li>
-                                                                <li *ngIf="card.heroPower!= null"><b>Heropower:</b>
-                                                                    {{card.heroPower}}</li>
-                                                                <li *ngIf="card.heroPowerEffect!= null"><b>Heropower
-                                                                        Effect:</b>
-                                                                    {{card.heroPowerEffect}}</li>
-                                                                <li *ngIf="card.heroPowerCost!= null"><b>Heropower
-                                                                        Cost:</b>
-                                                                    {{card.heroPowerCost}}</li>
-                                                            </ul> -->
+                                                            <img src="{{card.image}}" alt="{{card.name}}" (click)="openDetails(contentDetails, card)">
                                                         </mat-grid-tile>
                                                     </div>
                                                 </div>
@@ -242,8 +213,8 @@
     </mat-grid-list>
 </div>
 <!-- Table View -->
-<div class="container-fluid" style="width:80%;;" *ngIf="view.value == 'table'">
-    <table id="sortTable" class="table table-dark table-hover table-responsive" style="width:100%">
+<div class="container-fluid" style="width:80%;" *ngIf="view.value == 'table'">
+    <table id="sortTable" class="table table-dark table-hover table-responsive" style="width:100%" aria-label="Table with the Hearthstone cards">
         <thead class="table table-dark">
             <tr>
                 <th> Class </th>

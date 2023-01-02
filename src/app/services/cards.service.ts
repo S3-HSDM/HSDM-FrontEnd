@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -20,7 +20,7 @@ export class CardsService {
     return this.http.get<Card[]>(this.uri);
   }
 
-  public addCard(cardType: String, card: Card): Observable<Card> {
+  public addCard(cardType: string, card: Card): Observable<Card> {
     let addCardUri;
     let cardSet;
       if(card.set.indexOf('&') != null){

@@ -22,7 +22,7 @@
         *ngIf="card.name?.toLowerCase()?.includes(search.value) || card.effect?.toLowerCase()?.includes(search.value) 
             || card.heroPower?.toLowerCase()?.includes(search.value) || card.heroPowerEffect?.toLowerCase()?.includes(search.value) || search.value == ''">
         <mat-grid-tile>
-          <img src="{{card.image}}">
+          <img src="{{card.image}}" alt="{{card.name}}">
           <ul>
             <button mat-raised-button class="edit" (click)="openEdit(contentEdit, card)"> Edit </button> <button
               mat-raised-button class="delete" (click)="deleteCard(card.id)"> Delete </button>

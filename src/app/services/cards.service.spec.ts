@@ -10,7 +10,6 @@ describe('CardsService', () => {
       imports: [HttpClientTestingModule],
       providers: [CardsService]
     });
-    service = TestBed.inject(CardsService);
   });
 
   it('should be created', () => {

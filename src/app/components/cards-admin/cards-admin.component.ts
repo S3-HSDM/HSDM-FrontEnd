@@ -1,10 +1,10 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Card } from 'src/app/models/Card';
 import { CardsService } from 'src/app/services/cards.service';
 import { Router } from '@angular/router';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { NgForm, FormControl, FormGroup, FormBuilder } from '@angular/forms';
+import { NgForm, FormGroup, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-cards-admin',
@@ -48,7 +48,7 @@ export class CardsAdminComponent implements OnInit {
     window.location.reload();
   }
 
-  public addCard(cardType: String, card: Card) {
+  public addCard(cardType: string, card: Card) {
     this.cardsService.addCard(cardType, card)
     window.location.reload();
   }
@@ -66,7 +66,7 @@ export class CardsAdminComponent implements OnInit {
     });
   }
 
-  onSubmitAdd(cardType: String, form: NgForm) {
+  onSubmitAdd(cardType: string, form: NgForm) {
     this.addCard(cardType, form.value)
     this.modalService.dismissAll(); //dismiss the modal
   }
