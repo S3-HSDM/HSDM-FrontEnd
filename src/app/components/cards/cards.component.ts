@@ -1,5 +1,5 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Card } from 'src/app/models/Card';
 import { CardsService } from 'src/app/services/cards.service';
 import { FormControl } from '@angular/forms';
