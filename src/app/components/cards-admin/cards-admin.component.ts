@@ -14,6 +14,7 @@ import { NgForm, FormGroup, FormBuilder } from '@angular/forms';
 export class CardsAdminComponent implements OnInit {
 
   cards$: Observable<Card[]> = new Observable;
+  cardList: Card[];
   closeResult: string;
   cardType: string;
   cardToAdd: Card;
@@ -23,6 +24,7 @@ export class CardsAdminComponent implements OnInit {
 
   ngOnInit(): void {
     this.cards$ = this.cardsService.getCards();
+    this.getCards();
     this.editForm = this.formBuilder.group({
       id: [''],
       name: [''],
@@ -41,6 +43,10 @@ export class CardsAdminComponent implements OnInit {
       heroPowerEffect: [''],
       heroPowerCost: ['']
     });
+  }
+
+  getCards() {
+    this.cards$.subscribe(cards => this.cardList = cards);
   }
 
   public updateCard(card: Card) {

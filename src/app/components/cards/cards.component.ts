@@ -1,5 +1,5 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { Card } from 'src/app/models/Card';
 import { CardsService } from 'src/app/services/cards.service';
 import { FormControl } from '@angular/forms';
@@ -40,6 +40,7 @@ interface SetGroup {
 
 export class CardsComponent implements OnInit {
   cards$: Observable<Card[]> = new Observable;
+  cardList: Card[];
   breakpoint: number | undefined;
   rarityValue = null;
   cardTypeValue = null;
@@ -136,6 +137,7 @@ export class CardsComponent implements OnInit {
 
   ngOnInit(): void {
     this.cards$ = this.cardsService.getCards();
+    this.getCards();
     if(window.innerWidth <= 440){
       this.breakpoint = 1;
     } else if((window.innerWidth > 440 && window.innerWidth <= 660)){
@@ -151,6 +153,10 @@ export class CardsComponent implements OnInit {
     }
 
     this.changeDetectorRef.detectChanges();
+  }
+
+  getCards() {
+    this.cards$.subscribe(cards => this.cardList = cards);
   }
 
   onResize(event) {
